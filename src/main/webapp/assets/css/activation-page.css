@@ -1,0 +1,79 @@
+html, body {
+    height: 100vh;
+    margin: 0px;
+    overflow: hidden;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.activation-failed-body {
+    background-image: url("/assets/images/6.jpg");
+}
+.activation-succes-body {
+    background-image: url("/assets/images/user-activation-success-background.jpg");
+}
+.activation-failed-body p, .activation-failed-body h1 {
+    color: #fff;
+}
+.activation-succes-body a {
+     color: #2d72aa;
+     text-decoration: none;
+ }
+.activation-succes-body a:hover {
+    color: #6bbdff;
+}
+.activation-failed-body a {
+    color: #6bbdff;
+    text-decoration: none;
+}
+.activation-failed-body a:hover {
+    color: #2d72aa;
+}
+.main {
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.content{
+    padding: 50px 50px 20px 50px;
+    border-radius: 50px;
+}
+.activation-succes-body .content {
+    background-color: rgba(255,255,255,0.9);
+}
+.activation-failed-body .content {
+    background-color: rgba(0,0,0,0.3);
+}
+.email-image {
+    width:30%;
+}
+.button-go-to-login {
+    display: inline-block;
+    text-align: center;
+    background-color: #2d72aa;
+    padding: 10px 30px;
+    border: 2px solid #2d72aa;
+}
+.button-go-to-login span {
+    color: #fff
+}
+.button-go-to-login:hover {
+    background-color: #fff;
+    transition: 0.5s;
+}
+.button-go-to-login:hover span {
+    color: #2d72aa;
+}
+.bottom-links {
+    margin-top: 20px;
+    text-align: right;
+}
+.bottom-links a {
+    padding: 5px;
+}
+.bottom-links span {
+    color: #2d72aa;
+}

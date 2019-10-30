@@ -1,0 +1,74 @@
+@charset "UTF-8";
+.Navbar {
+  background-color: #23282f;
+  display: flex;
+  font-family: sans-serif;
+  color: #9ea1a9;
+}
+.Navbar__Link {
+  padding-right: 8px;
+  padding: 10px;
+}
+.Navbar a {
+	color: #9ea1a9;
+}
+.Navbar a:hover, .Navbar__Link:hover {
+	background-color: #444d5b;
+	color: #ffffff!important;
+}
+.display-user-name {
+	position: relative;
+	display: inline-block;
+	min-width: 160px;
+	text-align: center;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  right: 0px;
+  top: 44px;
+}
+.display-user-name:hover .dropdown-content {
+  display: block;
+}
+.Navbar__Items {
+  display: flex;
+}
+
+.Navbar__Items--right {
+  margin-left:auto;
+}
+
+.Navbar__Link-toggle {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .Navbar__Items,
+  .Navbar {
+    flex-direction: column;
+  }
+    
+.Navbar__Items {
+    display:none;
+  }
+    
+.Navbar__Items--right {
+    margin-left:0;
+  }
+    
+.Navbar__ToggleShow {
+    display: flex;
+  }
+    
+.Navbar__Link-toggle {
+    align-self: flex-end;
+    display: initial;
+    position: absolute;
+    cursor: pointer;
+   } 
