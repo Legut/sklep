@@ -71,7 +71,6 @@
       <artifactId>urlrewritefilter</artifactId>
       <version>4.0.3</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
     <dependency>
       <groupId>javax.mail</groupId>
       <artifactId>mail</artifactId>
@@ -114,5 +113,15 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
