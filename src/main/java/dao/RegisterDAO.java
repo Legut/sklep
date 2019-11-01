@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import util.ActivationEmail;
 import util.DataConnect;
 
 import javax.mail.*;
@@ -97,7 +98,7 @@ public class RegisterDAO {
                 try {
                     con.close();
                     ps.close();
-                    sendActivationEmail(activation_key, user_email);
+                    ActivationEmail.sendActivationEmail(activation_key, user_email);
                 } catch (Exception ex) {
                     System.out.println("Registration error when closing database connection or prepared statement; RegisterDAO.addUser() -->" + ex.getMessage());
                 }
@@ -107,51 +108,6 @@ public class RegisterDAO {
         }
         return null;
     }
-    private static void sendActivationEmail(String activation_key, String user_email) {
-        final String username = "monopolowy24h@bcd.pl";
-        final String password = "1dX3;21dfs3412davD!";
-
-        Properties prop = new Properties();
-        prop.put("mail.smtp.host", "bcd.home.pl");
-        prop.put("mail.smtp.port", "465");
-        prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.socketFactory.port", "465");
-        prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
-        Session session = Session.getInstance(prop,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
-
-        try {
-
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("monopolowy24h@bcd.pl"));
-            message.setRecipients(
-                    Message.RecipientType.TO,
-                    InternetAddress.parse(user_email)
-            );
-            //TODO: zastąpić sztywny link aktywacyjny takim co nie jest sztywny xd
-            message.setSubject("Rejestracja w Monopolowy24h - Aktywacja konta");
-            message.setText("Witaj! " +
-                    "Jeśli otrzymałeś ten email, to znaczy że proces rejestracji przebiegł pomyślnie. " +
-                    "Aby korzystać z utworzonego konta należy je aktywować, klikając w poniższy link." +
-                    "\nhttp://localhost:8080/user-activation?key=" + activation_key +
-                    "\n Jeśli nie rejestrowałeś się w sklepie Monopolowy24h, to zignoruj tę wiadomość." +
-                    "\n\n---------------------------------------" +
-                    "\nWiadomość wygenerowana automatycznie. Prosimy nie odpowiadać na tę wiadomość.");
-
-            Transport.send(message);
-
-            System.out.println("Done");
-
-        } catch (MessagingException ex) {
-            System.out.println("Sending activation email error; RegisterDAO.sendActivationEmail() -->" + ex.getMessage());
-        }
-    }
-
     public static boolean checkActivationKeyAndDelete(String user_activation_key) {
         if (user_activation_key != null) {
             PreparedStatement ps;
