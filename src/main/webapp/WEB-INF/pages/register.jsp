@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,7 +10,7 @@
 <div id="login-form-container">
     <div class="container-inner">
         <h1>Rejestracja</h1>
-        <form action="register" method="post">
+        <form action="${pageContext.request.contextPath}/register" method="post">
             <p><span>Login:</span> <br /> <input type="text" name="userlogin"></p>
             <p><span>Hasło:</span> <br /> <input type="password" name="pwd"></p>
             <p><span>Imię:</span> <br /> <input type="text" name="firstname"></p>
