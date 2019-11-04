@@ -93,3 +93,10 @@ body .data tbody .user-row:nth-child(even) {
     background-color: #6c7ae0;
     color: #ffffff;
 }
+.pages-list .pagination-active {
+    background-color: #6c7ae0!important;
+    color: #ffffff!important;
+}
+.pages-list .three-dots-sep {
+    display: inline-block;
+}
