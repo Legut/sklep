@@ -8,20 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/admin")
+@WebServlet("/admin/menadzer-uzytkownikow")
 public class UserManager extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        if (session.getAttribute("user_role") != null) {
-            String rola = session.getAttribute("user_role").toString();
-            if (rola.equals("ADMIN")) {
-                request.getRequestDispatcher("/WEB-INF/admin/user-manager.jsp").forward(request, response);
-            } else {
-                request.getRequestDispatcher("/WEB-INF/admin/no-access.jsp").forward(request, response);
-            }
-        } else {
-            request.getRequestDispatcher("/WEB-INF/admin/no-access.jsp").forward(request, response);
-        }
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
