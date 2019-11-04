@@ -27,9 +27,6 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
-        String uri = req.getRequestURI();
-        this.context.log("Requested Resource::" + uri);
-        System.out.println("uri = " + uri);
         HttpSession session = req.getSession(false);
 
         if (session.getAttribute("user_role") != null) {
