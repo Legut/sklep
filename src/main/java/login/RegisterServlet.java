@@ -1,4 +1,4 @@
-package servlets;
+package login;
 
 import dao.RegisterDAO;
 import org.apache.commons.validator.routines.EmailValidator;

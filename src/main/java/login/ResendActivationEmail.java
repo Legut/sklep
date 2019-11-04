@@ -1,4 +1,4 @@
-package servlets;
+package login;
 
 import util.ActivationEmail;
 
