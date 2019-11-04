@@ -4,14 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Properties;
 
 import util.ActivationEmail;
 import util.DataConnect;
-
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 public class RegisterDAO {
     private static String getAlphaNumericString(int n) {
@@ -27,8 +22,8 @@ public class RegisterDAO {
 
         return sb.toString();
     }
-    public static boolean validateUserLogin(String user_login) {
-        if (user_login != null) {
+    public static Boolean validateUserLogin(String user_login) {
+        if (!user_login.isEmpty()) {
             PreparedStatement ps;
             Connection con = null;
             try {
@@ -42,15 +37,15 @@ public class RegisterDAO {
                 }
             } catch (SQLException ex) {
                 System.out.println("Registration error; RegisterDAO.validateUserLogin() -->" + ex.getMessage());
-                return false;
+                return null;
             } finally {
                 DataConnect.close(con);
             }
         }
         return true;
     }
-    public static boolean validateUserEmail(String user_email) {
-        if (user_email != null) {
+    public static Boolean validateUserEmail(String user_email) {
+        if (!user_email.isEmpty()) {
             PreparedStatement ps;
             Connection con = null;
             try {
@@ -64,7 +59,7 @@ public class RegisterDAO {
                 }
             } catch (SQLException ex) {
                 System.out.println("Registration error; RegisterDAO.validateUserEmail() -->" + ex.getMessage());
-                return false;
+                return null;
             } finally {
                 DataConnect.close(con);
             }
@@ -72,25 +67,32 @@ public class RegisterDAO {
         return true;
     }
     public static String addUser(String user_login, String user_pass, String first_name, String last_name, String user_email) {
+        String activation_key;
         if (user_login != null || user_pass != null || user_email != null) {
             PreparedStatement ps = null;
             Connection con = null;
-            String activation_key = getAlphaNumericString(20);
+            activation_key = getAlphaNumericString(20);
             try {
                 con = DataConnect.getConnection();
                 if (con != null) {
-                    String sql = "INSERT INTO users(user_login, user_pass, first_name, last_name, user_email, user_registered, user_role, user_activation_key) VALUES(?,?,?,?,?,?,?,?)";
+                    String sql = "INSERT INTO users(user_login, user_pass, first_name, last_name, user_email, user_registered, user_role, user_activation_key) VALUES(?,?,?,?,?,NOW(),?,?)";
                     ps = con.prepareStatement(sql);
                     ps.setString(1, user_login);
                     ps.setString(2, user_pass);
-                    ps.setString(3, first_name);
-                    ps.setString(4, last_name);
+                    if(!first_name.isEmpty()) {
+                        ps.setString(3, first_name);
+                    } else {
+                        ps.setString(3, "Imię");
+                    }
+                    if(!last_name.isEmpty()) {
+                        ps.setString(4, last_name);
+                    } else {
+                        ps.setString(4, "Nazwisko");
+                    }
                     ps.setString(5, user_email);
-                    ps.setString(6, "NOW()");
-                    ps.setString(7, "USER");
-                    ps.setString(8, activation_key);
-                    ps.executeQuery();
-                    System.out.println("Data Added Successfully");
+                    ps.setString(6, "USER");
+                    ps.setString(7, activation_key);
+                    ps.executeUpdate();
                 }
             } catch (Exception ex) {
                 System.out.println("Registration error when executing query; RegisterDAO.addUser() -->" + ex.getMessage());
@@ -101,12 +103,13 @@ public class RegisterDAO {
                     ActivationEmail.sendActivationEmail(activation_key, user_email);
                 } catch (Exception ex) {
                     System.out.println("Registration error when closing database connection or prepared statement; RegisterDAO.addUser() -->" + ex.getMessage());
+                } finally {
+                    return activation_key;
                 }
             }
         } else {
-            return "failed";
+            return null;
         }
-        return null;
     }
     public static boolean checkActivationKeyAndDelete(String user_activation_key) {
         if (user_activation_key != null) {
