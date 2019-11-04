@@ -8,7 +8,7 @@
             <a href="${pageContext.request.contextPath}/admin" class="backend-navigation-link" title="Powrót do strony głównej backendu">
                 <li class="backend-navigation-element"><i class="fas fa-igloo"></i> Backend Home</li>
             </a>
-            <a href="${pageContext.request.contextPath}/admin/menadzer-uzytkownikow" class="backend-navigation-link" title="Przejdź do menadżera użytkowników">
+            <a href="${pageContext.request.contextPath}/admin/user-manager" class="backend-navigation-link" title="Przejdź do menadżera użytkowników">
                 <li class="backend-navigation-element"><i class="fas fa-users"></i> Użytkownicy</li>
             </a>
         </ul>
