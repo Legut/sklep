@@ -10,8 +10,8 @@
 -->
 <urlrewrite>
 <rule>
-<from>^/$</from>
-<to>/index</to>
+    <from>^/$</from>
+    <to>/index</to>
 </rule>
     <!--
 

@@ -4,12 +4,4 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
 	http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-	<navigation-rule>
-		<from-view-id>/login</from-view-id>
-		<navigation-case>
-			<from-outcome>admin</from-outcome>
-			<to-view-id>/adminpage</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-
 </faces-config>

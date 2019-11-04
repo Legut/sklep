@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,18 +41,18 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
+              <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="/sklep">Sklep
+              <a class="nav-link" href="${pageContext.request.contextPath}/sklep">Sklep
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/o-nas">O nas</a>
+              <a class="nav-link" href="${pageContext.request.contextPath}/o-nas">O nas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/kontakt">Kontakt</a>
+              <a class="nav-link" href="${pageContext.request.contextPath}/kontakt">Kontakt</a>
             </li>
           </ul>
         </div>
@@ -148,63 +148,63 @@
           </div>
           <div class="col-md-12">
             <div class="owl-carousel owl-theme">
-              <a href="/single-product">
+              <a href="${pageContext.request.contextPath}/single-product">
                 <div class="featured-item">
                   <img src="assets/images/item-01.jpg" alt="Item 1">
                   <h4>Proin vel ligula</h4>
                   <h6>$15.00</h6>
                 </div>
               </a>
-              <a href="/single-product">
+              <a href="${pageContext.request.contextPath}/single-product">
                 <div class="featured-item">
                   <img src="assets/images/item-02.jpg" alt="Item 2">
                   <h4>Erat odio rhoncus</h4>
                   <h6>$25.00</h6>
                 </div>
               </a>
-              <a href="/single-product">
+              <a href="${pageContext.request.contextPath}/single-product">
                 <div class="featured-item">
                   <img src="assets/images/item-03.jpg" alt="Item 3">
                   <h4>Integer vel turpis</h4>
                   <h6>$35.00</h6>
                 </div>
               </a>
-              <a href="/single-product">
+              <a href="${pageContext.request.contextPath}/single-product">
                 <div class="featured-item">
                   <img src="assets/images/item-04.jpg" alt="Item 4">
                   <h4>Sed purus quam</h4>
                   <h6>$45.00</h6>
                 </div>
               </a>
-              <a href="/single-product">
+              <a href="${pageContext.request.contextPath}/single-product">
                 <div class="featured-item">
                   <img src="assets/images/item-05.jpg" alt="Item 5">
                   <h4>Morbi aliquet</h4>
                   <h6>$55.00</h6>
                 </div>
               </a>
-              <a href="/single-product">
+              <a href="${pageContext.request.contextPath}/single-product">
                 <div class="featured-item">
                   <img src="assets/images/item-06.jpg" alt="Item 6">
                   <h4>Urna ac diam</h4>
                   <h6>$65.00</h6>
                 </div>
               </a>
-              <a href="/single-product">
+              <a href="${pageContext.request.contextPath}/single-product">
                 <div class="featured-item">
                   <img src="assets/images/item-04.jpg" alt="Item 7">
                   <h4>Proin eget imperdiet</h4>
                   <h6>$75.00</h6>
                 </div>
               </a>
-              <a href="/single-product">
+              <a href="${pageContext.request.contextPath}/single-product">
                 <div class="featured-item">
                   <img src="assets/images/item-05.jpg" alt="Item 8">
                   <h4>Nullam risus nisl</h4>
                   <h6>$85.00</h6>
                 </div>
               </a>
-              <a href="/single-product">
+              <a href="${pageContext.request.contextPath}/single-product">
                 <div class="featured-item">
                   <img src="assets/images/item-06.jpg" alt="Item 9">
                   <h4>Cras tempus</h4>
@@ -269,7 +269,7 @@
           <div class="col-md-12">
             <div class="footer-menu">
               <ul>
-                <li><a href="/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
                 <li><a href="#">Pomoc</a></li>
                 <li><a href="#">Polityka prywatności</a></li>
                 <li><a href="#">FAQ</a></li>

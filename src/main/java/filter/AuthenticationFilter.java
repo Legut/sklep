@@ -31,7 +31,9 @@ public class AuthenticationFilter implements Filter {
 
         if (session.getAttribute("user_role") != null) {
             String rola = session.getAttribute("user_role").toString();
-            if (!rola.equals("ADMIN")) {
+            if (rola.equals("ADMIN")) {
+                chain.doFilter(request, response);
+            } else {
                 res.sendRedirect("/no-access");
             }
         } else {
