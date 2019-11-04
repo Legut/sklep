@@ -6,7 +6,7 @@
 		</div>
 	</a>
 	<nav class="Navbar__Items">
-		<a href="${pageContext.request.contextPath}/admin/menadzer-uzytkownikow" title="Przejdź do menadżera użytkowników">
+		<a href="${pageContext.request.contextPath}/admin/user-manager" title="Przejdź do menadżera użytkowników">
 			<div class="Navbar__Link">
 				<i class="fas fa-users"></i> Użytkownicy
 			</div>
