@@ -32,4 +32,64 @@ body {
 .content {
     display: inline-flex;
     height: 100%;
+    width: 100%;
+}
+.content-inside{
+    width: 100%;
+    padding: 0px 40px;
+}
+.backend-page-title {
+    background-color: #6c7ae0;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 0px 0px 30px 0px;
+    display: inline-block;
+}
+.filters {
+    text-align: center;
+    background-color: #f8f6ff;
+}
+.data {
+    width: 100%;
+    border-spacing: 0px;
+}
+.data .user-list-header td:first-child {
+    border-radius: 30px 0px 0px 0px;
+}
+.data .user-list-header td:last-child {
+    border-radius: 0px 30px 0px 0px;
+}
+.data .user-list-header-item {
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #6c7ae0;
+    color: #fff;
+    line-height: 1.4;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    text-align: center;
+}
+.data .user-row-item {
+    font-size: 15px;
+    color: gray;
+    line-height: 1.4;
+    padding: 10px 0px 10px 20px;
+}
+body .data tbody .user-row:nth-child(even) {
+    background-color: #f8f6ff!important;
+}
+.pages-list {
+    padding: 20px 20px 100px 20px;
+    text-align: center;
+}
+.pages-list a div {
+    display: inline-block;
+    padding: 10px;
+    color: #6c7ae0;
+    background-color: #f8f6ff;
+    border: 1px solid #6c7ae0;
+}
+.pages-list a:hover div {
+    background-color: #6c7ae0;
+    color: #ffffff;
 }

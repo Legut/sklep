@@ -10,19 +10,38 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserDAO {
-    public static ArrayList<User> getUsersList(int startPosition, int amount) {
+    public static long amountOfUsers() {
+        Connection con = null;
+        long amount = 0;
+        PreparedStatement ps;
+        
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT COUNT(*) AS `amount` FROM users");
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                amount = rs.getLong("amount");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error while getting users data from db; UserDAO.amountOfUsers() -->" + ex.getMessage());
+        } finally {
+            DataConnect.close(con);
+        }
+        return amount;
+    }
+    public static ArrayList<User> getUsersList(long startPosition, long amount) {
         Connection con = null;
         PreparedStatement ps;
         ArrayList<User> usersList = new ArrayList<>();
         try {
             con = DataConnect.getConnection();
             ps = con.prepareStatement("SELECT * FROM users ORDER BY id LIMIT ?, ?");
-            ps.setString(1, String.valueOf(startPosition));
-            ps.setString(1, String.valueOf(amount));
+            ps.setLong(1, startPosition);
+            ps.setLong(2, amount);
             ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                User temp = new User(rs.getInt("ID"),
+            while (rs.next()) {
+                User temp = new User(rs.getLong("ID"),
                         rs.getString("user_login"),
                         rs.getString("user_pass"),
                         rs.getString("first_name"),
@@ -32,13 +51,12 @@ public class UserDAO {
                         rs.getString("user_activation_key"),
                         rs.getString("user_role"));
                 usersList.add(temp);
-                return usersList;
             }
         } catch (SQLException ex) {
             System.out.println("Error while getting users data from db; UserDAO.getUsersList() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
         }
-        return null;
+        return usersList;
     }
 }

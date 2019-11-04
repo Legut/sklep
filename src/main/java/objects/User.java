@@ -1,7 +1,7 @@
 package objects;
 
 public class User {
-    private int id;
+    private long id;
     private String user_login;
     private String user_pass;
     private String first_name;
@@ -11,7 +11,7 @@ public class User {
     private String user_activation;
     private String user_role;
 
-    public User(int id, String user_login, String user_pass, String first_name, String last_name, String user_email, String user_registered, String user_activation, String user_role) {
+    public User(long id, String user_login, String user_pass, String first_name, String last_name, String user_email, String user_registered, String user_activation, String user_role) {
         this.id = id;
         this.user_login = user_login;
         this.user_pass = user_pass;
@@ -35,11 +35,11 @@ public class User {
         this.user_role = null;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
