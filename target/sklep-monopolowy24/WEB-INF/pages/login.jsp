@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,8 +12,8 @@
     <div class="container-inner">
         <h1>Zaloguj się do sklepu</h1>
         <form action="login" method="post">
-            <p><span>Username:</span> <br /> <input type="text" name="user"></p>
-            <p><span>Password:</span> <br /> <input type="password" name="pwd"></p>
+            <p><span>Login:</span> <br /> <input type="text" name="user"></p>
+            <p><span>Hasło:</span> <br /> <input type="password" name="pwd"></p>
             <p><input type="submit" value="Zaloguj"></p>
         </form>
     </div>

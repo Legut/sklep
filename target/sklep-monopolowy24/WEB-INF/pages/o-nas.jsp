@@ -29,7 +29,7 @@
               <br>
               <p>Pixie HTML Template can be converted into your desired CMS theme. You can use this Bootstrap v4.1.3 layout for any online shop. Please tell your friends about Tooplate. Thank you.</p>
               <div class="share">
-                <h6>Find us on: <span><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-twitter"></i></a></span></h6>
+                <h6>Find us on: <span><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fab fa-twitter"></i></a></span></h6>
               </div>
             </div>
           </div>

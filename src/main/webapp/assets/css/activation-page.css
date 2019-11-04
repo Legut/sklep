@@ -14,14 +14,17 @@ body {
 .activation-succes-body {
     background-image: url("/assets/images/user-activation-success-background.jpg");
 }
+.no-access-body {
+    background-image: url("/assets/images/no-access-background.jpg");
+}
 .activation-failed-body p, .activation-failed-body h1 {
     color: #fff;
 }
-.activation-succes-body a {
+.activation-succes-body a, .no-access-body a {
      color: #2d72aa;
      text-decoration: none;
  }
-.activation-succes-body a:hover {
+.activation-succes-body a:hover, .no-access-body a:hover {
     color: #6bbdff;
 }
 .activation-failed-body a {
@@ -41,7 +44,7 @@ body {
     padding: 50px 50px 20px 50px;
     border-radius: 50px;
 }
-.activation-succes-body .content {
+.activation-succes-body .content, .no-access-body .content {
     background-color: rgba(255,255,255,0.9);
 }
 .activation-failed-body .content {

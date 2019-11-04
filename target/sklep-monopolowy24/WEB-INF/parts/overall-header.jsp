@@ -14,24 +14,24 @@
     <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Pliki CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fa/css/all.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/owl.css">
-    <% String rola = null; 
-    if (session.getAttribute("role")!=null){
-    	rola = session.getAttribute("role").toString(); 
+    <% String rola = null;
+    if (session.getAttribute("user_role")!=null){
+    	rola = session.getAttribute("user_role").toString();
     	if (rola.equals("ADMIN")) { %>
     		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/adminbar.css">
     	<%}
     }%>
   </head>
   <body>
-  	<% if (session.getAttribute("role")!=null){
+  	<% if (session.getAttribute("user_role")!=null){
 	    if (rola.equals("ADMIN")) { %>
 	    	<jsp:include page="/WEB-INF/parts/adminbar.jsp"/>
 	    <%}
 	}%>
-	<% if (session.getAttribute("role")!=null){
+	<% if (session.getAttribute("user_role")!=null){
 	    if (rola.equals("USER")) { %>
 	    	<h1>TODO: userbar.jsp i userbar.css</h1>
 	    <%}

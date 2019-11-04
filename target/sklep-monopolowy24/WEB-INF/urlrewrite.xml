@@ -9,10 +9,6 @@
 
 -->
 <urlrewrite>
-<outbound-rule>
-<from>/admin/</from>
-<to>/admin/protected.jsp</to>
-</outbound-rule>
 <rule>
 <from>^/$</from>
 <to>/index</to>

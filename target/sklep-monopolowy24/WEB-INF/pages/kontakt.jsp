@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-md-12">
                       <div class="share">
-                        <h6>Możesz się również z nami skontaktować przez: <span><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-twitter"></i></a></span></h6>
+                        <h6>Możesz się również z nami skontaktować przez: <span><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fab fa-twitter"></i></a></span></h6>
                       </div>
                     </div>
                   </div>

@@ -14,7 +14,7 @@
     <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Pliki CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fa/css/all.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/owl.css">
     <% String rola = null;

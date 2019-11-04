@@ -3,18 +3,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login Success Page</title>
+<title>Zalogowano pomyślnie</title>
 </head>
 <body>
 <%
-//allow access only if session exists
-String user = (String) session.getAttribute("user");
 String userName = null;
 String sessionID = null;
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
 for(Cookie cookie : cookies){
-	if(cookie.getName().equals("user")) userName = cookie.getValue();
+	if(cookie.getName().equals("user_login")) userName = cookie.getValue();
 	if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
 }
 }
