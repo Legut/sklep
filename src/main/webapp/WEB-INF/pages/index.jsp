@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" import="java.security.Principal" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.security.Principal" %>
 <jsp:include page="/WEB-INF/parts/overall-header.jsp"/>
 <jsp:include page="/WEB-INF/parts/sloganbar.jsp"/>
 <!-- Nawigacja -->
@@ -42,7 +42,7 @@
                             <h6>69,90 zł</h6>
                         </div>
                     </a>
-                    <a href="/single-product">
+                    <a href="${pageContext.request.contextPath}/single-product">
                         <div class="featured-item">
                             <img src="assets/images/item-02.jpg" alt="Item 2">
                             <h4>Dalmore 0,7 L</h4>

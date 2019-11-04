@@ -25,6 +25,7 @@
                 }
             %>
         </p>
+        <a href="${pageContext.request.contextPath}/login" class="theme-button-link"><span class="theme-button">Login</span></a>
         <a href="${pageContext.request.contextPath}/" class="theme-button-link"><span class="theme-button">Home</span></a>
         <a href="${pageContext.request.contextPath}/faq" class="theme-button-link"><span class="theme-button">FAQ</span></a>
         <a href="${pageContext.request.contextPath}/kontakt" class="theme-button-link"><span class="theme-button">Kontakt</span></a>

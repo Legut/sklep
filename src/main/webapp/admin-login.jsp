@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<title>Logowanie do panelu Admina</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-	<link rel="stylesheet" href="/assets/css/login.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/login.css">
 </head>
 <body>
 <div id="login-form-container">
