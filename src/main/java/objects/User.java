@@ -1,15 +1,15 @@
 package objects;
 
 public class User {
-    int id;
-    String user_login;
-    String user_pass;
-    String first_name;
-    String last_name;
-    String user_email;
-    String user_registered;
-    String user_activation;
-    String user_role;
+    private int id;
+    private String user_login;
+    private String user_pass;
+    private String first_name;
+    private String last_name;
+    private String user_email;
+    private String user_registered;
+    private String user_activation;
+    private String user_role;
 
     public User(int id, String user_login, String user_pass, String first_name, String last_name, String user_email, String user_registered, String user_activation, String user_role) {
         this.id = id;
