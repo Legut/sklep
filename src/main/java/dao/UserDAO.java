@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserDAO {
-    public static long amountOfUsers() {
+    public static long amountOfUsers() throws SQLException {
         Connection con = null;
         long amount = 0;
-        PreparedStatement ps;
+        PreparedStatement ps = null;
         
         try {
             con = DataConnect.getConnection();
@@ -27,12 +27,15 @@ public class UserDAO {
             System.out.println("Error while getting users data from db; UserDAO.amountOfUsers() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
+            if (ps != null) {
+                ps.close();
+            }
         }
         return amount;
     }
-    public static ArrayList<User> getUsersList(long startPosition, long amount) {
+    public static ArrayList<User> getUsersList(long startPosition, long amount) throws SQLException {
         Connection con = null;
-        PreparedStatement ps;
+        PreparedStatement ps = null;
         ArrayList<User> usersList = new ArrayList<>();
         try {
             con = DataConnect.getConnection();
@@ -56,12 +59,15 @@ public class UserDAO {
             System.out.println("Error while getting users data from db; UserDAO.getUsersList() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
+            if (ps != null) {
+                ps.close();
+            }
         }
         return usersList;
     }
-    public static boolean checkIfUserExists(long id) {
+    public static boolean checkIfUserExists(long id) throws SQLException {
         Connection con = null;
-        PreparedStatement ps;
+        PreparedStatement ps = null;
 
         try {
             con = DataConnect.getConnection();
@@ -76,12 +82,15 @@ public class UserDAO {
             return false;
         } finally {
             DataConnect.close(con);
+            if (ps != null) {
+                ps.close();
+            }
         }
         return false;
     }
-    public static String deleteSingleUser(long deleteId) {
+    public static String deleteSingleUser(long deleteId) throws SQLException {
         Connection con = null;
-        PreparedStatement ps;
+        PreparedStatement ps = null;
         if(checkIfUserExists(deleteId)) {
             try {
                 con = DataConnect.getConnection();
@@ -93,13 +102,16 @@ public class UserDAO {
                 return "Wystąpił problem w trakcie usuwania użytkownika";
             } finally {
                 DataConnect.close(con);
+                if (ps != null) {
+                    ps.close();
+                }
             }
             return "Użytkownik został usunięty";
         } else {
             return null;
         }
     }
-    public static boolean addSingleUser(String user_login, String user_pass, String first_name, String last_name, String user_email) {
+    public static boolean addSingleUser(String user_login, String user_pass, String first_name, String last_name, String user_email) throws SQLException {
         String activation_key = "";
         if (user_login != null || user_pass != null || user_email != null) {
             PreparedStatement ps = null;
@@ -108,8 +120,7 @@ public class UserDAO {
             try {
                 con = DataConnect.getConnection();
                 if (con != null) {
-                    String sql = "INSERT INTO users(user_login, user_pass, first_name, last_name, user_email, user_registered, user_role, user_activation_key) VALUES(?,?,?,?,?,NOW(),?,?)";
-                    ps = con.prepareStatement(sql);
+                    ps = con.prepareStatement("INSERT INTO users(user_login, user_pass, first_name, last_name, user_email, user_registered, user_role, user_activation_key) VALUES(?,?,?,?,?,NOW(),?,?)");
                     ps.setString(1, user_login);
                     ps.setString(2, user_pass);
                     if(!first_name.isEmpty()) {
@@ -131,6 +142,9 @@ public class UserDAO {
                 System.out.println("Error while adding user during query execution; UserDAO.addSingleUser() -->" + ex.getMessage());
             } finally {
                 DataConnect.close(con);
+                if (ps != null) {
+                    ps.close();
+                }
             }
         } else {
             return false;

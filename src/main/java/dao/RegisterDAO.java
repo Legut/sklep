@@ -22,9 +22,9 @@ public class RegisterDAO {
 
         return sb.toString();
     }
-    public static Boolean validateUserLogin(String user_login) {
+    public static Boolean validateUserLogin(String user_login) throws SQLException {
         if (!user_login.isEmpty()) {
-            PreparedStatement ps;
+            PreparedStatement ps = null;
             Connection con = null;
             try {
                 con = DataConnect.getConnection();
@@ -39,14 +39,17 @@ public class RegisterDAO {
                 System.out.println("Registration error; RegisterDAO.validateUserLogin() -->" + ex.getMessage());
                 return null;
             } finally {
+                if (ps != null) {
+                    ps.close();
+                }
                 DataConnect.close(con);
             }
         }
         return true;
     }
-    public static Boolean validateUserEmail(String user_email) {
+    public static Boolean validateUserEmail(String user_email) throws SQLException {
         if (!user_email.isEmpty()) {
-            PreparedStatement ps;
+            PreparedStatement ps = null;
             Connection con = null;
             try {
                 con = DataConnect.getConnection();
@@ -61,6 +64,9 @@ public class RegisterDAO {
                 System.out.println("Registration error; RegisterDAO.validateUserEmail() -->" + ex.getMessage());
                 return null;
             } finally {
+                if (ps != null) {
+                    ps.close();
+                }
                 DataConnect.close(con);
             }
         }
@@ -98,6 +104,9 @@ public class RegisterDAO {
                 System.out.println("Registration error when executing query; RegisterDAO.addUser() -->" + ex.getMessage());
             } finally {
                 try {
+                    if (ps != null) {
+                        ps.close();
+                    }
                     DataConnect.close(con);
                     ActivationEmail.sendActivationEmail(activation_key, user_email);
                 } catch (Exception ex) {
@@ -110,9 +119,9 @@ public class RegisterDAO {
             return null;
         }
     }
-    public static boolean checkActivationKeyAndDelete(String user_activation_key) {
+    public static boolean checkActivationKeyAndDelete(String user_activation_key) throws SQLException {
         if (user_activation_key != null) {
-            PreparedStatement ps;
+            PreparedStatement ps = null;
             Connection con = null;
             try {
                 con = DataConnect.getConnection();
@@ -137,6 +146,9 @@ public class RegisterDAO {
                 System.out.println("User activation error; RegisterDAO.checkActivationKeyAndDelete() -->" + ex.getMessage());
                 return false;
             } finally {
+                if (ps != null) {
+                    ps.close();
+                }
                 DataConnect.close(con);
             }
         }
