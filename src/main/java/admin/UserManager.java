@@ -36,7 +36,7 @@ public class UserManager extends HttpServlet {
         }
 
         long amountOfUsers = UserDAO.amountOfUsers();
-        pagesToPrint = (int)Math.ceil(amountOfUsers / amountPerPage);
+        pagesToPrint = (int)Math.ceil((double)amountOfUsers / (double)amountPerPage);
         ArrayList<User> list = UserDAO.getUsersList(page*amountPerPage, amountPerPage);
 
         request.setAttribute("pagesToPrint", pagesToPrint);
