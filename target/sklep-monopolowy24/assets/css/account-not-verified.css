@@ -1,0 +1,38 @@
+#info-container {
+	color: #ffffff;
+	text-align: center;
+	font-family: Roboto;
+}
+.buttons-row {
+    width: 100%;
+}
+.info-container-inner {
+	display: inline-block;
+	margin: 100px auto;
+    max-width: 800px;
+	background-color: #3a8bcd;
+	padding: 20px 30px;
+}
+.theme-button-link, .submit-resend-activation-email {
+    cursor: pointer;
+    background-color: #fff;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    display: inline-block;
+    color: #3a8bcd;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 0.4px;
+    text-decoration: none;
+    transition: all 0.5s;
+    box-shadow: none;
+    border: none;
+    border: 1px solid #fff;
+}
+.theme-button-link:hover, .submit-resend-activation-email:hover {
+	color: #fff;
+	background-color: #3a8bcd;
+	transition: 0.5s;
+}
