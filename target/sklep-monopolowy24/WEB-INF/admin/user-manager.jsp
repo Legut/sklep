@@ -9,28 +9,36 @@
 <div class="content">
     <div class="content-inside">
         <h1 class="backend-page-title"><i class="fas fa-users"></i> Menadżer użytkowników</h1>
+        <p class="info-msg"><% if(request.getAttribute("msg") != null){ out.println(request.getAttribute("msg")); request.setAttribute("msg", null); } %></p>
         <div class="filters">
-            <h1>
-                <%
-                    int amountPerPage;
-                    if(request.getAttribute("amountOfUsers") != null) {
-                        out.println("Ilość zarejestrowanych użytkowników: " + request.getAttribute("amountOfUsers"));
-                    }
-                    if(request.getAttribute("amountPerPage") != null){
-                        amountPerPage = (int)((long)request.getAttribute("amountPerPage"));
-                    } else {
-                        amountPerPage = 0;
-                    }
-                %>
-            </h1>
+            <%
+                int amountPerPage, currentPage;
+                if(request.getAttribute("amountOfUsers") != null) {
+                    out.println("<p>Ilość zarejestrowanych użytkowników: " + request.getAttribute("amountOfUsers") + "</p>");
+                }
+                if(request.getAttribute("amountPerPage") != null){
+                    amountPerPage = (int)((long)request.getAttribute("amountPerPage"));
+                } else {
+                    amountPerPage = 0;
+                }
+                if(request.getAttribute("currentPage") != null){
+                    currentPage = (int)((long) request.getAttribute("currentPage"));
+                } else {
+                    currentPage = 0;
+                }
+            %>
             <form action="/admin/user-manager" method="post">
+                <p>Ile użytkowników na jedną stronę:
                 <select name="amountPerPage">
                     <option <% if(amountPerPage==5){ out.println("selected");} %>>5</option>
                     <option <% if(amountPerPage==10){ out.println("selected");} %>>10</option>
                     <option <% if(amountPerPage==20){ out.println("selected");} %>>20</option>
                     <option <% if(amountPerPage==50){ out.println("selected");} %>>50</option>
                     <option <% if(amountPerPage==100){ out.println("selected");} %>>100</option>
-                </select>
+                        <% if(amountPerPage!=5 && amountPerPage!=10 && amountPerPage!=20 && amountPerPage!=50 && amountPerPage!=100){
+                            out.println("<option selected>" + amountPerPage + "</option>");
+                        } %>
+                </select></p>
                 <input type="submit" value="Zastosuj">
             </form>
         </div>
@@ -42,6 +50,7 @@
 
                     out.println("<thead>" +
                             "<tr class=\"user-list-header\">" +
+                            "<td class=\"user-list-header-item user-edit\">edytuj / usuń</td>" +
                             "<td class=\"user-list-header-item user-login\">Login</td>" +
                             "<td class=\"user-list-header-item user-pass\">Hasło</td>" +
                             "<td class=\"user-list-header-item user-name\">Imię</td>" +
@@ -55,6 +64,7 @@
                     if (!list.isEmpty()) {
                         for (User user : list) {
                             out.println("<tr class=\"user-row user-no-" + i + "\">" +
+                                    "<td class=\"user-row-item user-login\"><a href=\"#\">edytuj</a> / <a href=\"/admin/user-manager?page=" + currentPage + "&amountPerPage=" + amountPerPage + "&deleteId=" + user.getId() + "\">usuń</a></td>" +
                                     "<td class=\"user-row-item user-login\">" + user.getUser_login() + "</td>" +
                                     "<td class=\"user-row-item user-pass\">" + user.getUser_pass() + "</td>" +
                                     "<td class=\"user-row-item user-name\">" + user.getFirst_name() + "</td>" +
@@ -73,13 +83,6 @@
 
                 if(request.getAttribute("pagesToPrint") != null) {
                     int pagesToPrint = (int) request.getAttribute("pagesToPrint");
-                    int currentPage;
-
-                    if(request.getAttribute("currentPage") != null){
-                        currentPage = (int)((long) request.getAttribute("currentPage"));
-                    } else {
-                        currentPage = 0;
-                    }
 
                     if(currentPage<pagesToPrint){
                         %>

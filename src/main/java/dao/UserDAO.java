@@ -36,7 +36,7 @@ public class UserDAO {
         ArrayList<User> usersList = new ArrayList<>();
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("SELECT * FROM users ORDER BY id LIMIT ?, ?");
+            ps = con.prepareStatement("SELECT * FROM users ORDER BY ID LIMIT ?, ?");
             ps.setLong(1, startPosition);
             ps.setLong(2, amount);
             ResultSet rs = ps.executeQuery();
@@ -58,5 +58,47 @@ public class UserDAO {
             DataConnect.close(con);
         }
         return usersList;
+    }
+
+    public static boolean checkIfUserExists(long id) {
+        Connection con = null;
+        PreparedStatement ps;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT * FROM users WHERE ID = ?");
+            ps.setLong(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error while checking if user exists in db; UserDAO.checkIfUserExists() -->" + ex.getMessage());
+            return false;
+        } finally {
+            DataConnect.close(con);
+        }
+        return false;
+    }
+
+    public static String deleteSingleUser(long deleteId) {
+        Connection con = null;
+        PreparedStatement ps;
+        if(checkIfUserExists(deleteId)) {
+            try {
+                con = DataConnect.getConnection();
+                ps = con.prepareStatement("DELETE FROM users WHERE ID = ?");
+                ps.setLong(1, deleteId);
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("Error while deleting user from db; UserDAO.deleteSingleUser() -->" + ex.getMessage());
+                return "Wystąpił problem w trakcie usuwania użytkownika";
+            } finally {
+                DataConnect.close(con);
+            }
+            return "Użytkownik został usunięty";
+        } else {
+            return null;
+        }
     }
 }

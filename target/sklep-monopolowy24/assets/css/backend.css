@@ -46,8 +46,9 @@ body {
     display: inline-block;
 }
 .filters {
-    text-align: center;
     background-color: #f8f6ff;
+    padding: 20px;
+    margin-bottom: 10px;
 }
 .data {
     width: 100%;
@@ -99,4 +100,7 @@ body .data tbody .user-row:nth-child(even) {
 }
 .pages-list .three-dots-sep {
     display: inline-block;
+}
+.info-msg {
+    color: red;
 }
