@@ -35,7 +35,7 @@ public class LoginDAO {
     }
     public static String checkRole(String user, String password) {
         Connection con = null;
-        PreparedStatement ps = null;
+        PreparedStatement ps;
         try {
             con = DataConnect.getConnection();
             ps = con.prepareStatement("SELECT user_role FROM users WHERE user_login = '" + user + "' and user_pass = '" + password + "'");

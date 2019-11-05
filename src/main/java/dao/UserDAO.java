@@ -59,7 +59,6 @@ public class UserDAO {
         }
         return usersList;
     }
-
     public static boolean checkIfUserExists(long id) {
         Connection con = null;
         PreparedStatement ps;
@@ -80,7 +79,6 @@ public class UserDAO {
         }
         return false;
     }
-
     public static String deleteSingleUser(long deleteId) {
         Connection con = null;
         PreparedStatement ps;
@@ -99,6 +97,43 @@ public class UserDAO {
             return "Użytkownik został usunięty";
         } else {
             return null;
+        }
+    }
+    public static boolean addSingleUser(String user_login, String user_pass, String first_name, String last_name, String user_email) {
+        String activation_key = "";
+        if (user_login != null || user_pass != null || user_email != null) {
+            PreparedStatement ps = null;
+            Connection con = null;
+
+            try {
+                con = DataConnect.getConnection();
+                if (con != null) {
+                    String sql = "INSERT INTO users(user_login, user_pass, first_name, last_name, user_email, user_registered, user_role, user_activation_key) VALUES(?,?,?,?,?,NOW(),?,?)";
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1, user_login);
+                    ps.setString(2, user_pass);
+                    if(!first_name.isEmpty()) {
+                        ps.setString(3, first_name);
+                    } else {
+                        ps.setString(3, "Imię");
+                    }
+                    if(!last_name.isEmpty()) {
+                        ps.setString(4, last_name);
+                    } else {
+                        ps.setString(4, "Nazwisko");
+                    }
+                    ps.setString(5, user_email);
+                    ps.setString(6, "USER");
+                    ps.setString(7, activation_key);
+                    ps.executeUpdate();
+                }
+            } catch (Exception ex) {
+                System.out.println("Error while adding user during query execution; UserDAO.addSingleUser() -->" + ex.getMessage());
+            } finally {
+                DataConnect.close(con);
+            }
+        } else {
+            return false;
         }
     }
 }

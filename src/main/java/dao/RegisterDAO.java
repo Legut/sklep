@@ -98,8 +98,7 @@ public class RegisterDAO {
                 System.out.println("Registration error when executing query; RegisterDAO.addUser() -->" + ex.getMessage());
             } finally {
                 try {
-                    con.close();
-                    ps.close();
+                    DataConnect.close(con);
                     ActivationEmail.sendActivationEmail(activation_key, user_email);
                 } catch (Exception ex) {
                     System.out.println("Registration error when closing database connection or prepared statement; RegisterDAO.addUser() -->" + ex.getMessage());
