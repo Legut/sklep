@@ -16,6 +16,21 @@ body {
     padding: 0px;
     margin: 0px;
 }
+.sidebar-left .backend-navigation-list .dropdown {
+    list-style: none;
+    padding: 0px;
+    transition: max-height 3s ease-out 3s;
+    max-height: 0;
+    overflow: hidden;
+    background-color: #2e343e;
+}
+.sidebar-left .backend-navigation-list .dropdown li{
+    padding: 10px 15px;
+}
+.sidebar-left .backend-navigation-list .users-link:hover .dropdown {
+    transition: max-height 3s ease-out 0s;
+    max-height: 999px;
+}
 .sidebar-left .backend-navigation-list .backend-navigation-element {
     padding: 10px 15px;
 }
