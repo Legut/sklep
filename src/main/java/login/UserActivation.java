@@ -8,13 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/user-activation")
 public class UserActivation  extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getParameter("key") != null){
             String user_activation_key = request.getParameter("key");
-            boolean valid = RegisterDAO.checkActivationKeyAndDelete(user_activation_key);
+            boolean valid = false;
+            try {
+                valid = RegisterDAO.checkActivationKeyAndDelete(user_activation_key);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             if(valid){
                 request.setAttribute("activation", true);
             } else {

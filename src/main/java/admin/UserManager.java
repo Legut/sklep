@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet("/admin/user-manager")
@@ -32,12 +33,26 @@ public class UserManager extends HttpServlet {
 
         if(request.getParameter("deleteId") != null){
             deleteId = Long.valueOf(request.getParameter("deleteId"));
-            msg = UserDAO.deleteSingleUser(deleteId);
+            try {
+                msg = UserDAO.deleteSingleUser(deleteId);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
-        long amountOfUsers = UserDAO.amountOfUsers();
+        long amountOfUsers = 0;
+        try {
+            amountOfUsers = UserDAO.amountOfUsers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         pagesToPrint = (int)Math.ceil((double)amountOfUsers / (double)amountPerPage);
-        ArrayList<User> list = UserDAO.getUsersList(page*amountPerPage, amountPerPage);
+        ArrayList<User> list = null;
+        try {
+            list = UserDAO.getUsersList(page*amountPerPage, amountPerPage);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         request.setAttribute("pagesToPrint", pagesToPrint);
         request.setAttribute("currentPage", page);

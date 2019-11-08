@@ -145,6 +145,7 @@ public class UserDAO {
                 if (ps != null) {
                     ps.close();
                 }
+                return true;
             }
         } else {
             return false;
