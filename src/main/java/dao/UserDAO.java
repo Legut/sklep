@@ -65,14 +65,14 @@ public class UserDAO {
         }
         return usersList;
     }
-    public static boolean checkIfUserExists(long id) throws SQLException {
+    public static boolean checkIfUserExists(String id) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
 
         try {
             con = DataConnect.getConnection();
             ps = con.prepareStatement("SELECT * FROM users WHERE ID = ?");
-            ps.setLong(1, id);
+            ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return true;
@@ -88,14 +88,14 @@ public class UserDAO {
         }
         return false;
     }
-    public static String deleteSingleUser(long deleteId) throws SQLException {
+    public static String deleteSingleUser(String deleteId) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
         if(checkIfUserExists(deleteId)) {
             try {
                 con = DataConnect.getConnection();
                 ps = con.prepareStatement("DELETE FROM users WHERE ID = ?");
-                ps.setLong(1, deleteId);
+                ps.setString(1, deleteId);
                 ps.executeUpdate();
             } catch (SQLException ex) {
                 System.out.println("Error while deleting user from db; UserDAO.deleteSingleUser() -->" + ex.getMessage());
@@ -140,6 +140,69 @@ public class UserDAO {
                 }
             } catch (Exception ex) {
                 System.out.println("Error while adding user during query execution; UserDAO.addSingleUser() -->" + ex.getMessage());
+            } finally {
+                DataConnect.close(con);
+                if (ps != null) {
+                    ps.close();
+                }
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+    public static User getSingleUserData(String userId) throws SQLException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT * FROM users WHERE ID = ?");
+            ps.setString(1, userId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                User singleUser = new User(rs.getLong("ID"),
+                        rs.getString("user_login"),
+                        rs.getString("user_pass"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("user_email"),
+                        rs.getString("user_registered"),
+                        rs.getString("user_activation_key"),
+                        rs.getString("user_role"));
+                return singleUser;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error while checking if user exists in db; UserDAO.checkIfUserExists() -->" + ex.getMessage());
+            return null;
+        } finally {
+            DataConnect.close(con);
+            if (ps != null) {
+                ps.close();
+            }
+        }
+        return null;
+    }
+    public static boolean editGivenUser(String userId, String user_login, String user_pass, String first_name, String last_name, String user_email, String activation_key) throws SQLException {
+        if (user_login != null || user_pass != null || user_email != null) {
+            PreparedStatement ps = null;
+            Connection con = null;
+
+            try {
+                con = DataConnect.getConnection();
+                if (con != null) {
+                    ps = con.prepareStatement("UPDATE users SET user_login = ?, user_pass = ?, first_name = ?, last_name = ?, user_email = ?, user_registered = ?, user_role = ?, user_activation_key = ?) WHERE ID = ? ");
+                    ps.setString(1, user_login);
+                    ps.setString(2, user_pass);
+                    ps.setString(3, first_name);
+                    ps.setString(4, last_name);
+                    ps.setString(5, user_email);
+                    ps.setString(6, "USER");
+                    ps.setString(7, activation_key);
+                    ps.setString(8, userId);
+                    ps.executeUpdate();
+                }
+            } catch (Exception ex) {
+                System.out.println("Error while updating user data; UserDAO.editGivenUser() -->" + ex.getMessage());
             } finally {
                 DataConnect.close(con);
                 if (ps != null) {

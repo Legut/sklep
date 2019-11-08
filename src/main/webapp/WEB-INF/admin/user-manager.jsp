@@ -64,7 +64,10 @@
                     if (!list.isEmpty()) {
                         for (User user : list) {
                             out.println("<tr class=\"user-row user-no-" + i + "\">" +
-                                    "<td class=\"user-row-item user-login\"><a href=\"#\">edytuj</a> / <a href=\"/admin/user-manager?page=" + currentPage + "&amountPerPage=" + amountPerPage + "&deleteId=" + user.getId() + "\">usuń</a></td>" +
+                                    "<td class=\"user-row-item user-login\">" +
+                                        "<a href=\"" + request.getContextPath() + "/admin/user-manager/edit-user?userId=" + user.getId() + "\">edytuj</a> / " +
+                                        "<a href=\"/admin/user-manager?page=" + currentPage + "&amountPerPage=" + amountPerPage + "&deleteId=" + user.getId() + "\">usuń</a>" +
+                                    "</td>" +
                                     "<td class=\"user-row-item user-login\">" + user.getUser_login() + "</td>" +
                                     "<td class=\"user-row-item user-pass\">" + user.getUser_pass() + "</td>" +
                                     "<td class=\"user-row-item user-name\">" + user.getFirst_name() + "</td>" +
@@ -92,7 +95,7 @@
 
                         <% if (pagesToPrint>12) {
                             if (currentPage != 0) {
-                                out.println("<a href=\"/admin/user-manager?page=" + (currentPage - 1) + "&amountPerPage=" + amountPerPage + "\">" +
+                                out.println("<a href=\"" + request.getContextPath() + "/admin/user-manager?page=" + (currentPage - 1) + "&amountPerPage=" + amountPerPage + "\">" +
                                         "<div class=\"link-no-0 previous-page\">Poprzednia</div>" +
                                         "</a>");
                             }

@@ -2,6 +2,7 @@ package admin;
 
 import dao.RegisterDAO;
 import dao.UserDAO;
+import objects.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,18 +12,43 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/admin/user-manager/add-user")
-public class AddUser extends HttpServlet {
+@WebServlet("/admin/user-manager/edit-user")
+public class EditUser extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/admin/add-user.jsp").forward(request, response);
+        String userId = request.getParameter("userId");
+        String msg = "";
+        if(request.getAttribute("msg")!=null) {
+            msg += request.getAttribute("msg");
+        }
+        boolean userExist = false;
+
+        try {
+            userExist = UserDAO.checkIfUserExists(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(userExist){
+            try {
+                User singleUser = UserDAO.getSingleUserData(userId);
+                request.setAttribute("singleUser", singleUser);
+            } catch (SQLException e) {
+                msg += "\nProblem w trakcie pobierania danych użytkownika z bazy; Error: " + e;
+            }
+        }
+
+        request.setAttribute("msg", msg);
+        request.getRequestDispatcher("/WEB-INF/admin/edit-user.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String user_id = request.getParameter("userId");
         String user_login = request.getParameter("userlogin");
         String user_pass = request.getParameter("pwd");
         String first_name = request.getParameter("firstname");
         String last_name = request.getParameter("lastname");
         String user_email = request.getParameter("email");
+        String user_activation_key = request.getParameter("userActivationKey");
         String msg = "";
         Boolean validEmail = null, validLogin = null;
 
@@ -45,18 +71,18 @@ public class AddUser extends HttpServlet {
         }
 
         if(validEmail == null || validLogin == null) {
-            msg += "\nWystąpił problem w trakcie rejestracji.";
+            msg += "\nWystąpił problem w trakcie sprawdzenia poprawności danych";
         } else {
             if(validEmail){
                 if(validLogin){
                     boolean done = false;
                     try {
-                        done = UserDAO.addSingleUser(user_login, user_pass, first_name, last_name, user_email);
+                        done = UserDAO.editGivenUser(user_id, user_login, user_pass, first_name, last_name, user_email, user_activation_key);
                     } catch (SQLException e) {
                         msg += "\nNie udało się dodać użytkownika; Error: " + e;
                     }
                     if(done){
-                        msg += "\nPomyślnie dodano użytkownika do bazy";
+                        msg += "\nPomyślnie zedytowano użytkownika";
                     }
                 } else { msg += "\nPodany login jest już zajęty"; }
             } else { msg += "\nPodany email jest już zajęty"; }

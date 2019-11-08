@@ -15,8 +15,8 @@ import java.util.ArrayList;
 @WebServlet("/admin/user-manager")
 public class UserManager extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        long page, amountPerPage, deleteId;
-        String msg = null;
+        long page, amountPerPage;
+        String msg = null, deleteId;
         int pagesToPrint;
 
         if(request.getParameter("page") == null){
@@ -32,7 +32,7 @@ public class UserManager extends HttpServlet {
         }
 
         if(request.getParameter("deleteId") != null){
-            deleteId = Long.valueOf(request.getParameter("deleteId"));
+            deleteId = String.valueOf(request.getParameter("deleteId"));
             try {
                 msg = UserDAO.deleteSingleUser(deleteId);
             } catch (SQLException e) {
