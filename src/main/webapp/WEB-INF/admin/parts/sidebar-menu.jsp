@@ -11,6 +11,9 @@
             <a href="${pageContext.request.contextPath}/admin/user-manager" class="backend-navigation-link" title="Przejdź do menadżera użytkowników">
                 <li class="backend-navigation-element"><i class="fas fa-users"></i> Użytkownicy</li>
             </a>
+            <a href="${pageContext.request.contextPath}/admin/product-manager" class="backend-navigation-link" title="Przejdź do menadżera produktów">
+                <li class="backend-navigation-element"><i class="fas fa-shopping-bag"></i> Produkty</li>
+            </a>
         </ul>
     </div>
 </div>
