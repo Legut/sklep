@@ -20,21 +20,10 @@ public class EditUser extends HttpServlet {
         if(request.getAttribute("msg")!=null) {
             msg += request.getAttribute("msg");
         }
-        boolean userExist = false;
 
-        try {
-            userExist = UserDAO.checkIfUserExists(userId);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        if(userExist){
-            try {
-                User singleUser = UserDAO.getSingleUserData(userId);
-                request.setAttribute("singleUser", singleUser);
-            } catch (SQLException e) {
-                msg += "\nProblem w trakcie pobierania danych użytkownika z bazy; Error: " + e;
-            }
+        if(UserDAO.checkIfUserExists(userId)){
+            User singleUser = UserDAO.getSingleUserData(userId);
+            request.setAttribute("singleUser", singleUser);
         }
 
         request.setAttribute("msg", msg);

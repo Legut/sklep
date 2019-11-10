@@ -3,15 +3,14 @@ package dao;
 import objects.User;
 import util.DataConnect;
 
-import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserDAO {
-    public static long amountOfUsers() throws SQLException {
+    public static long amountOfUsers() {
         Connection con = null;
         long amount = 0;
         PreparedStatement ps = null;
@@ -29,12 +28,50 @@ public class UserDAO {
         } finally {
             DataConnect.close(con);
             if (ps != null) {
-                ps.close();
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    System.out.println("Error while closing PreparedStatement; UserDAO.amountOfUsers() -->" + ex.getMessage());
+                }
             }
         }
         return amount;
     }
-    public static ArrayList<User> getUsersList(long startPosition, long amount) throws SQLException {
+    public static long amountOfUsersOfPattern(String pattern, int searchOption) {
+        Connection con = null;
+        long amount = 0;
+        PreparedStatement ps = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT COUNT(*) AS `amount` FROM users WHERE user_login LIKE ?");
+            if(searchOption==1){
+                ps.setString(1, pattern + "%"); //zaczyna się na
+            } else if(searchOption==3) {
+                ps.setString(1, "%" + pattern); //kończy się na
+            } else {
+                ps.setString(1, "%" + pattern + "%"); //zawiera
+            }
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                amount = rs.getLong("amount");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error while getting users data from db; UserDAO.amountOfUsersOfPattern() -->" + ex.getMessage());
+        } finally {
+            DataConnect.close(con);
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    System.out.println("Error while closing PreparedStatement; UserDAO.amountOfUsersOfPattern() -->" + ex.getMessage());
+                }
+            }
+        }
+        return amount;
+    }
+    public static ArrayList<User> getUsersList(long startPosition, long amount) {
         Connection con = null;
         PreparedStatement ps = null;
         ArrayList<User> usersList = new ArrayList<>();
@@ -61,13 +98,11 @@ public class UserDAO {
             System.out.println("Error while getting users data from db; UserDAO.getUsersList() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
-            if (ps != null) {
-                ps.close();
-            }
+            if (ps != null) { try { ps.close(); } catch (SQLException ex) { System.out.println("Error while closing PreparedStatement; UserDAO.getUsersList() -->" + ex.getMessage()); } }
         }
         return usersList;
     }
-    public static boolean checkIfUserExists(String id) throws SQLException {
+    public static boolean checkIfUserExists(String id) {
         Connection con = null;
         PreparedStatement ps = null;
 
@@ -85,12 +120,16 @@ public class UserDAO {
         } finally {
             DataConnect.close(con);
             if (ps != null) {
-                ps.close();
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    System.out.println("Error while closing PreparedStatement; UserDAO.checkIfUserExists() -->" + ex.getMessage());
+                }
             }
         }
         return false;
     }
-    public static String deleteSingleUser(String deleteId) throws SQLException {
+    public static boolean deleteSingleUser(String deleteId) {
         Connection con = null;
         PreparedStatement ps = null;
         if(checkIfUserExists(deleteId)) {
@@ -101,16 +140,21 @@ public class UserDAO {
                 ps.executeUpdate();
             } catch (SQLException ex) {
                 System.out.println("Error while deleting user from db; UserDAO.deleteSingleUser() -->" + ex.getMessage());
-                return "Wystąpił problem w trakcie usuwania użytkownika";
+                return false;
             } finally {
                 DataConnect.close(con);
                 if (ps != null) {
-                    ps.close();
+                    try {
+                        ps.close();
+                    } catch (SQLException ex) {
+                        System.out.println("Error while closing PreparedStatement; UserDAO.deleteSingleUser() -->" + ex.getMessage());
+                    }
                 }
             }
-            return "Użytkownik został usunięty";
+            return true;
         } else {
-            return null;
+            System.out.println("User with given ID doesn't exist; UserDAO.deleteSingleUser()");
+            return false;
         }
     }
     public static boolean checkIfLoginExist(String user_login, String userId) {
@@ -173,7 +217,7 @@ public class UserDAO {
         }
         return true;
     }
-    public static User getSingleUserData(String userId) throws SQLException {
+    public static User getSingleUserData(String userId) {
         Connection con = null;
         PreparedStatement ps = null;
         try {
@@ -200,7 +244,11 @@ public class UserDAO {
         } finally {
             DataConnect.close(con);
             if (ps != null) {
-                ps.close();
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    System.out.println("Error while closing PreparedStatement; UserDAO.checkIfUserExists() -->" + ex.getMessage());
+                }
             }
         }
         return null;
@@ -236,5 +284,43 @@ public class UserDAO {
         } else {
             return false;
         }
+    }
+    public static ArrayList<User> getUsersListOfPattern(long startPosition, long amount, String searchByUserName, int searchOption) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ArrayList<User> usersList = new ArrayList<>();
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT * FROM users WHERE user_login LIKE ? ORDER BY ID LIMIT ?, ?");
+            if(searchOption==1){
+                ps.setString(1, searchByUserName + "%"); //zaczyna się na
+            } else if(searchOption==3) {
+                ps.setString(1, "%" + searchByUserName); //kończy się na
+            } else {
+                ps.setString(1, "%" + searchByUserName + "%"); //zawiera
+            }
+            ps.setLong(2, startPosition);
+            ps.setLong(3, amount);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User temp = new User(rs.getLong("ID"),
+                        rs.getString("user_login"),
+                        rs.getString("user_pass"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("user_email"),
+                        rs.getString("user_registered"),
+                        rs.getString("user_activation_key"),
+                        rs.getString("user_role"),
+                        rs.getString("birth_date"));
+                usersList.add(temp);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error while getting users data from db; UserDAO.getUsersListOfPattern() -->" + ex.getMessage());
+        } finally {
+            DataConnect.close(con);
+            if (ps != null) { try { ps.close(); } catch (SQLException ex) { System.out.println("Error while closing PreparedStatement; UserDAO.getUsersListOfPattern() -->" + ex.getMessage()); } }
+        }
+        return usersList;
     }
 }
