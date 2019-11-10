@@ -11,13 +11,13 @@
     <title>Monopolowy24h - Internetowy sklep monopolowy z dostawą do domu</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Pliki CSS -->
-    <link rel="stylesheet" href="../../assets/fa/css/fontawesome.css">
-    <link rel="stylesheet" href="../../assets/css/main.css">
-    <link rel="stylesheet" href="../../assets/css/owl.css">
-    <link rel="stylesheet" href="../../assets/css/flex-slider.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fa/css/fontawesome.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/owl.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/flex-slider.css">
   </head>
 
   <body>
@@ -34,7 +34,7 @@
     <!-- Nawigacja -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
       <div class="container">
-        <a class="navbar-brand" href="#"><img src="../../assets/images/monopolowy24h-logo.png" alt="Monopolowy 24h - logo"></a>
+        <a class="navbar-brand" href="#"><img src="${pageContext.request.contextPath}/assets/images/monopolowy24h-logo.png" alt="Monopolowy 24h - logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -78,16 +78,16 @@
               <div id="slider" class="flexslider">
                 <ul class="slides">
                   <li>
-                    <img src="../../assets/images/big-01.jpg" />
+                    <img src="${pageContext.request.contextPath}/assets/images/big-01.jpg" />
                   </li>
                   <li>
-                    <img src="../../assets/images/big-02.jpg" />
+                    <img src="${pageContext.request.contextPath}/assets/images/big-02.jpg" />
                   </li>
                   <li>
-                    <img src="../../assets/images/big-03.jpg" />
+                    <img src="${pageContext.request.contextPath}/assets/images/big-03.jpg" />
                   </li>
                   <li>
-                    <img src="../../assets/images/big-04.jpg" />
+                    <img src="${pageContext.request.contextPath}/assets/images/big-04.jpg" />
                   </li>
                   <!-- items mirrored twice, total of 12 -->
                 </ul>
@@ -95,16 +95,16 @@
               <div id="carousel" class="flexslider">
                 <ul class="slides">
                   <li>
-                    <img src="../../assets/images/thumb-01.jpg" />
+                    <img src="${pageContext.request.contextPath}/assets/images/thumb-01.jpg" />
                   </li>
                   <li>
-                    <img src="../../assets/images/thumb-02.jpg" />
+                    <img src="${pageContext.request.contextPath}/assets/images/thumb-02.jpg" />
                   </li>
                   <li>
-                    <img src="../../assets/images/thumb-03.jpg" />
+                    <img src="${pageContext.request.contextPath}/assets/images/thumb-03.jpg" />
                   </li>
                   <li>
-                    <img src="../../assets/images/thumb-04.jpg" />
+                    <img src="${pageContext.request.contextPath}/assets/images/thumb-04.jpg" />
                   </li>
                   <!-- items mirrored twice, total of 12 -->
                 </ul>
@@ -154,63 +154,63 @@
             <div class="owl-carousel owl-theme">
               <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
-                  <img src="../../assets/images/item-01.jpg" alt="Item 1">
+                  <img src="${pageContext.request.contextPath}/assets/images/item-01.jpg" alt="Item 1">
                   <h4>Proin vel ligula</h4>
                   <h6>$15.00</h6>
                 </div>
               </a>
               <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
-                  <img src="../../assets/images/item-02.jpg" alt="Item 2">
+                  <img src="${pageContext.request.contextPath}/assets/images/item-02.jpg" alt="Item 2">
                   <h4>Erat odio rhoncus</h4>
                   <h6>$25.00</h6>
                 </div>
               </a>
               <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
-                  <img src="../../assets/images/item-03.jpg" alt="Item 3">
+                  <img src="${pageContext.request.contextPath}/assets/images/item-03.jpg" alt="Item 3">
                   <h4>Integer vel turpis</h4>
                   <h6>$35.00</h6>
                 </div>
               </a>
               <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
-                  <img src="../../assets/images/item-04.jpg" alt="Item 4">
+                  <img src="${pageContext.request.contextPath}/assets/images/item-04.jpg" alt="Item 4">
                   <h4>Sed purus quam</h4>
                   <h6>$45.00</h6>
                 </div>
               </a>
               <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
-                  <img src="../../assets/images/item-05.jpg" alt="Item 5">
+                  <img src="${pageContext.request.contextPath}/assets/images/item-05.jpg" alt="Item 5">
                   <h4>Morbi aliquet</h4>
                   <h6>$55.00</h6>
                 </div>
               </a>
               <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
-                  <img src="../../assets/images/item-06.jpg" alt="Item 6">
+                  <img src="${pageContext.request.contextPath}/assets/images/item-06.jpg" alt="Item 6">
                   <h4>Urna ac diam</h4>
                   <h6>$65.00</h6>
                 </div>
               </a>
               <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
-                  <img src="../../assets/images/item-04.jpg" alt="Item 7">
+                  <img src="${pageContext.request.contextPath}/assets/images/item-04.jpg" alt="Item 7">
                   <h4>Proin eget imperdiet</h4>
                   <h6>$75.00</h6>
                 </div>
               </a>
               <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
-                  <img src="../../assets/images/item-05.jpg" alt="Item 8">
+                  <img src="${pageContext.request.contextPath}/assets/images/item-05.jpg" alt="Item 8">
                   <h4>Nullam risus nisl</h4>
                   <h6>$85.00</h6>
                 </div>
               </a>
               <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
-                  <img src="../../assets/images/item-06.jpg" alt="Item 9">
+                  <img src="${pageContext.request.contextPath}/assets/images/item-06.jpg" alt="Item 9">
                   <h4>Cras tempus</h4>
                   <h6>$95.00</h6>
                 </div>
@@ -267,7 +267,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="logo">
-              <img src="../../assets/images/monopolowy24h-logo.png" alt="Monopolowy 24h - logo">
+              <img src="${pageContext.request.contextPath}/assets/images/monopolowy24h-logo.png" alt="Monopolowy 24h - logo">
             </div>
           </div>
           <div class="col-md-12">
@@ -311,15 +311,15 @@
     <!-- Koniec bloku pod stopką -->
 
     <!-- Bootstrap core JavaScript -->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Dodatkowe skrypty -->
-    <script src="../../assets/js/custom.js"></script>
-    <script src="../../assets/js/owl.js"></script>
-    <script src="../../assets/js/isotope.js"></script>
-    <script src="../../assets/js/additional-js-for-single-product.js"></script>
-    <script src="../../assets/js/flex-slider.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/owl.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/isotope.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/additional-js-for-single-product.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/flex-slider.js"></script>
     <script language = "text/Javascript"> 
       cleared[0] = cleared[1] = cleared[2] = 0;
       function clearField(t){
