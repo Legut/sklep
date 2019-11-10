@@ -29,7 +29,7 @@
 
         <div class="row posts">
             <div id="1" class="item new col-md-4">
-              <a href="${pageContext.request.contextPath}/single-product">
+              <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
                   <img src="assets/images/product-01.jpg" alt="">
                   <h4>Proin vel ligula</h4>
@@ -38,7 +38,7 @@
               </a>
             </div>
             <div id="2" class="item high col-md-4">
-              <a href="${pageContext.request.contextPath}/single-product">
+              <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
                   <img src="assets/images/product-02.jpg" alt="">
                   <h4>Erat odio rhoncus</h4>
@@ -47,7 +47,7 @@
               </a>
             </div>
             <div id="3" class="item low col-md-4">
-              <a href="${pageContext.request.contextPath}/single-product">
+              <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
                   <img src="assets/images/product-03.jpg" alt="">
                   <h4>Integer vel turpis</h4>
@@ -56,7 +56,7 @@
               </a>
             </div>
             <div id="4" class="item low col-md-4">
-              <a href="${pageContext.request.contextPath}/single-product">
+              <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
                   <img src="assets/images/product-04.jpg" alt="">
                   <h4>Sed purus quam</h4>
@@ -65,7 +65,7 @@
               </a>
             </div>
             <div id="5" class="item new high col-md-4">
-              <a href="${pageContext.request.contextPath}/single-product">
+              <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
                   <img src="assets/images/product-05.jpg" alt="">
                   <h4>Morbi aliquet</h4>
@@ -74,7 +74,7 @@
               </a>
             </div>
             <div id="6" class="item new col-md-4">
-              <a href="${pageContext.request.contextPath}/single-product">
+              <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
                   <img src="assets/images/product-06.jpg" alt="">
                   <h4>Urna ac diam</h4>
@@ -83,7 +83,7 @@
               </a>
             </div>
             <div id="7" class="item new high col-md-4">
-              <a href="${pageContext.request.contextPath}/single-product">
+              <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
                   <img src="${pageContext.request.contextPath}/assets/images/product-03.jpg" alt="">
                   <h4>Proin eget imperdiet</h4>
@@ -92,7 +92,7 @@
               </a>
             </div>
             <div id="8" class="item low new col-md-4">
-              <a href="${pageContext.request.contextPath}/single-product">
+              <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
                   <img src="assets/images/product-02.jpg" alt="">
                   <h4>Nullam risus nisl</h4>
@@ -101,7 +101,7 @@
               </a>
             </div>
             <div id="9" class="item new col-md-4">
-              <a href="${pageContext.request.contextPath}/single-product">
+              <a href="${pageContext.request.contextPath}/product">
                 <div class="featured-item">
                   <img src="assets/images/product-01.jpg" alt="">
                   <h4>Cras tempus</h4>
