@@ -3,10 +3,11 @@ package dao;
 import objects.User;
 import util.DataConnect;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class UserDAO {
@@ -52,7 +53,8 @@ public class UserDAO {
                         rs.getString("user_email"),
                         rs.getString("user_registered"),
                         rs.getString("user_activation_key"),
-                        rs.getString("user_role"));
+                        rs.getString("user_role"),
+                        rs.getString("birth_date"));
                 usersList.add(temp);
             }
         } catch (SQLException ex) {
@@ -111,45 +113,65 @@ public class UserDAO {
             return null;
         }
     }
-    public static boolean addSingleUser(String user_login, String user_pass, String first_name, String last_name, String user_email) throws SQLException {
-        String activation_key = "";
-        if (user_login != null || user_pass != null || user_email != null) {
+    public static boolean checkIfLoginExist(String user_login, String userId) {
+        if (!user_login.isEmpty()) {
             PreparedStatement ps = null;
             Connection con = null;
-
             try {
                 con = DataConnect.getConnection();
-                if (con != null) {
-                    ps = con.prepareStatement("INSERT INTO users(user_login, user_pass, first_name, last_name, user_email, user_registered, user_role, user_activation_key) VALUES(?,?,?,?,?,NOW(),?,?)");
-                    ps.setString(1, user_login);
-                    ps.setString(2, user_pass);
-                    if(!first_name.isEmpty()) {
-                        ps.setString(3, first_name);
-                    } else {
-                        ps.setString(3, "Imię");
-                    }
-                    if(!last_name.isEmpty()) {
-                        ps.setString(4, last_name);
-                    } else {
-                        ps.setString(4, "Nazwisko");
-                    }
-                    ps.setString(5, user_email);
-                    ps.setString(6, "USER");
-                    ps.setString(7, activation_key);
-                    ps.executeUpdate();
+                ps = con.prepareStatement("SELECT * FROM users WHERE user_login = ? AND ID != ?");
+                ps.setString(1, user_login);
+                ps.setString(2, userId);
+                ResultSet rs = ps.executeQuery();
+
+                if (rs.next()) {
+                    return false;
                 }
-            } catch (Exception ex) {
-                System.out.println("Error while adding user during query execution; UserDAO.addSingleUser() -->" + ex.getMessage());
+            } catch (SQLException ex) {
+                System.out.println("Error while trying to check in database if given email is valid; RegisterDAO.validateUserLogin() -->" + ex.getMessage());
+                return false;
             } finally {
-                DataConnect.close(con);
                 if (ps != null) {
-                    ps.close();
+                    try {
+                        ps.close();
+                    } catch (SQLException ex) {
+                        System.out.println("Error while trying to close PreparedStatement; RegisterDAO.validateUserLogin() -->" + ex.getMessage());
+                    }
                 }
-                return true;
+                DataConnect.close(con);
             }
-        } else {
-            return false;
         }
+        return true;
+    }
+    public static boolean checkIfEmailExist(String user_email, String userId) {
+        if (!user_email.isEmpty()) {
+            PreparedStatement ps = null;
+            Connection con = null;
+            try {
+                con = DataConnect.getConnection();
+                ps = con.prepareStatement("SELECT * FROM users WHERE user_email = ? AND ID != ?");
+                ps.setString(1, user_email);
+                ps.setString(2, userId);
+                ResultSet rs = ps.executeQuery();
+
+                if (rs.next()) {
+                    return false;
+                }
+            } catch (SQLException ex) {
+                System.out.println("Error while checking in db if email is valid; RegisterDAO.validateUserEmail() -->" + ex.getMessage());
+                return false;
+            } finally {
+                if (ps != null) {
+                    try {
+                        ps.close();
+                    } catch (SQLException ex) {
+                        System.out.println("Error while closing PreparedStatement; RegisterDAO.validateUserEmail() -->" + ex.getMessage());
+                    }
+                }
+                DataConnect.close(con);
+            }
+        }
+        return true;
     }
     public static User getSingleUserData(String userId) throws SQLException {
         Connection con = null;
@@ -168,7 +190,8 @@ public class UserDAO {
                         rs.getString("user_email"),
                         rs.getString("user_registered"),
                         rs.getString("user_activation_key"),
-                        rs.getString("user_role"));
+                        rs.getString("user_role"),
+                        rs.getString("birth_date"));
                 return singleUser;
             }
         } catch (SQLException ex) {
@@ -182,7 +205,7 @@ public class UserDAO {
         }
         return null;
     }
-    public static boolean editGivenUser(String userId, String user_login, String user_pass, String first_name, String last_name, String user_email, String activation_key) throws SQLException {
+    public static boolean editGivenUser(String userId, String user_login, String user_pass, String first_name, String last_name, String user_email, String activation_key, String birth_date) {
         if (user_login != null || user_pass != null || user_email != null) {
             PreparedStatement ps = null;
             Connection con = null;
@@ -190,7 +213,7 @@ public class UserDAO {
             try {
                 con = DataConnect.getConnection();
                 if (con != null) {
-                    ps = con.prepareStatement("UPDATE users SET user_login = ?, user_pass = ?, first_name = ?, last_name = ?, user_email = ?, user_registered = ?, user_role = ?, user_activation_key = ?) WHERE ID = ? ");
+                    ps = con.prepareStatement("UPDATE users SET user_login = ?, user_pass = ?, first_name = ?, last_name = ?, user_email = ?, user_role = ?, user_activation_key = ?, birth_date = ? WHERE ID = ? ");
                     ps.setString(1, user_login);
                     ps.setString(2, user_pass);
                     ps.setString(3, first_name);
@@ -198,16 +221,16 @@ public class UserDAO {
                     ps.setString(5, user_email);
                     ps.setString(6, "USER");
                     ps.setString(7, activation_key);
-                    ps.setString(8, userId);
+//                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    ps.setString(8, birth_date);
+                    ps.setString(9, userId);
                     ps.executeUpdate();
                 }
             } catch (Exception ex) {
                 System.out.println("Error while updating user data; UserDAO.editGivenUser() -->" + ex.getMessage());
             } finally {
                 DataConnect.close(con);
-                if (ps != null) {
-                    ps.close();
-                }
+                if (ps != null) { try { ps.close(); } catch (SQLException ex) { System.out.println("Error while closing PreparedStatement; UserDAO.editGivenUser() -->" + ex.getMessage()); } }
                 return true;
             }
         } else {

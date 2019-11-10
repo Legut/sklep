@@ -23,46 +23,24 @@ public class AddUser extends HttpServlet {
         String first_name = request.getParameter("firstname");
         String last_name = request.getParameter("lastname");
         String user_email = request.getParameter("email");
-        String msg = "";
-        Boolean validEmail = null, validLogin = null;
+        String birth_date = request.getParameter("birthDate");
 
-        if(user_login == null){ msg = "Nie podano loginu";
-        } else if (user_pass == null){ msg = "Nie podano hasła";
-        } else if (first_name == null){ msg = "Nie podano imienia";
-        } else if (last_name == null){ msg = "Nie podano nazwiska";
-        } else if (user_email == null){ msg = "Nie podano emaila";
+        if(user_login == null){ request.setAttribute("msg", "Nie podano loginu");
+        } else if (user_pass == null){ request.setAttribute("msg", "Nie podano hasła");
+        } else if (first_name == null){ request.setAttribute("msg", "Nie podano imienia");
+        } else if (last_name == null){ request.setAttribute("msg", "Nie podano nazwiska");
+        } else if (user_email == null){ request.setAttribute("msg", "Nie podano emaila");
+        } else if(!RegisterDAO.validateUserEmail(user_email)){ request.setAttribute("msg", "Podany email jest już zajęty");
+        } else if(!RegisterDAO.validateUserLogin(user_login)){ request.setAttribute("msg", "Podany login jest już zajęty");
         } else {
-            try {
-                validLogin = RegisterDAO.validateUserLogin(user_login);
-            } catch (SQLException e) {
-                msg += "\nProblem w trakcie sprawdzania czy użytkownik o podanym loginie już istnieje; Error: " + e;
-            }
-            try {
-                validEmail = RegisterDAO.validateUserEmail(user_email);
-            } catch (SQLException e) {
-                msg += "\nProblem w trakcie sprawdzania czy użytkownik o podanym mailu już istnieje; Error: " + e;
+            boolean done = RegisterDAO.addUser(user_login, user_pass, first_name, last_name, user_email, "", birth_date);
+            if(done){
+                request.setAttribute("msg", "Pomyślnie dodano użytkownika do bazy");
+            } else {
+                request.setAttribute("msg", "Wystąpił problem w trakcie dodawania uzytkownika do bazy, spróbuj ponownie, albo zweryfikuj logi serwera");
             }
         }
 
-        if(validEmail == null || validLogin == null) {
-            msg += "\nWystąpił problem w trakcie rejestracji.";
-        } else {
-            if(validEmail){
-                if(validLogin){
-                    boolean done = false;
-                    try {
-                        done = UserDAO.addSingleUser(user_login, user_pass, first_name, last_name, user_email);
-                    } catch (SQLException e) {
-                        msg += "\nNie udało się dodać użytkownika; Error: " + e;
-                    }
-                    if(done){
-                        msg += "\nPomyślnie dodano użytkownika do bazy";
-                    }
-                } else { msg += "\nPodany login jest już zajęty"; }
-            } else { msg += "\nPodany email jest już zajęty"; }
-        }
-
-        request.setAttribute("msg", msg);
         doGet(request, response);
     }
 }

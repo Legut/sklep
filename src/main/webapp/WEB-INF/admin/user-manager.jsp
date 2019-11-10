@@ -57,7 +57,6 @@
                             "<td class=\"user-list-header-item user-last-name\">Nazwisko</td>" +
                             "<td class=\"user-list-header-item user-email\">Email</td>" +
                             "<td class=\"user-list-header-item user-role\">Rola</td>" +
-                            "<td class=\"user-list-header-item user-activation-key\">Klucz aktywacyjny</td>" +
                             "</tr>" +
                             "</thead>" +
                             "<tbody>");
@@ -74,7 +73,6 @@
                                     "<td class=\"user-row-item user-last-name\">" + user.getLast_name() + "</td>" +
                                     "<td class=\"user-row-item user-email\">" + user.getUser_email() + "</td>" +
                                     "<td class=\"user-row-item user-role\">" + user.getUser_role() + "</td>" +
-                                    "<td class=\"user-row-item user-activation-key\">" + user.getUser_activation() + "</td>" +
                                     "</tr>");
                             i++;
                         }

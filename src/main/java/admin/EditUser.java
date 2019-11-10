@@ -49,46 +49,28 @@ public class EditUser extends HttpServlet {
         String last_name = request.getParameter("lastname");
         String user_email = request.getParameter("email");
         String user_activation_key = request.getParameter("userActivationKey");
-        String msg = "";
-        Boolean validEmail = null, validLogin = null;
+        String birth_date = request.getParameter("birthDate");
 
-        if(user_login == null){ msg = "Nie podano loginu";
-        } else if (user_pass == null){ msg = "Nie podano hasła";
-        } else if (first_name == null){ msg = "Nie podano imienia";
-        } else if (last_name == null){ msg = "Nie podano nazwiska";
-        } else if (user_email == null){ msg = "Nie podano emaila";
+
+        if(user_id == null){ request.setAttribute("msg", "Nie rozpoznano id edytowanego użytkownika. Spróbuj ponownie wyszukać użytkownika na " +
+                "liście uzytkowników w menadżerze użytkowników i zedytuj jego dane jeszcze raz.");
+        } else if(user_login == null){ request.setAttribute("msg", "Nie podano loginu");
+        } else if (user_pass == null){ request.setAttribute("msg", "Nie podano hasła");
+        } else if (first_name == null){ request.setAttribute("msg", "Nie podano imienia");
+        } else if (last_name == null){ request.setAttribute("msg", "Nie podano nazwiska");
+        } else if (user_email == null){ request.setAttribute("msg", "Nie podano emaila");
+        } else if(!UserDAO.checkIfEmailExist(user_email, user_id)){ request.setAttribute("msg", "Podany email jest już zajęty");
+        } else if(!UserDAO.checkIfLoginExist(user_login, user_id)){ request.setAttribute("msg", "Podany login jest już zajęty");
         } else {
-            try {
-                validLogin = RegisterDAO.validateUserLogin(user_login);
-            } catch (SQLException e) {
-                msg += "\nProblem w trakcie sprawdzania czy użytkownik o podanym loginie już istnieje; Error: " + e;
-            }
-            try {
-                validEmail = RegisterDAO.validateUserEmail(user_email);
-            } catch (SQLException e) {
-                msg += "\nProblem w trakcie sprawdzania czy użytkownik o podanym mailu już istnieje; Error: " + e;
+            if(user_activation_key == null) { user_activation_key = ""; }
+            boolean done = UserDAO.editGivenUser(user_id, user_login, user_pass, first_name, last_name, user_email, user_activation_key, birth_date);
+            if(done){
+                request.setAttribute("msg", "Pomyślnie zedytowano użytkownika");
+            } else {
+                request.setAttribute("msg", "Wystąpił problem w trakcie dodawania zedytowanych danych uzytkownika do bazy, spróbuj ponownie, albo zweryfikuj logi serwera");
             }
         }
 
-        if(validEmail == null || validLogin == null) {
-            msg += "\nWystąpił problem w trakcie sprawdzenia poprawności danych";
-        } else {
-            if(validEmail){
-                if(validLogin){
-                    boolean done = false;
-                    try {
-                        done = UserDAO.editGivenUser(user_id, user_login, user_pass, first_name, last_name, user_email, user_activation_key);
-                    } catch (SQLException e) {
-                        msg += "\nNie udało się dodać użytkownika; Error: " + e;
-                    }
-                    if(done){
-                        msg += "\nPomyślnie zedytowano użytkownika";
-                    }
-                } else { msg += "\nPodany login jest już zajęty"; }
-            } else { msg += "\nPodany email jest już zajęty"; }
-        }
-
-        request.setAttribute("msg", msg);
         doGet(request, response);
     }
 }
