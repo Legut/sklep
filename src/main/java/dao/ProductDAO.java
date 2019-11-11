@@ -39,17 +39,30 @@ public class ProductDAO {
         }
     }
 
-    public static void requestProductParameter(String parameter, int id) {
+    public static Product getProduct(int id) {
         PreparedStatement ps = null;
         Connection con = null;
+        Product product = null;
         try {
             con = DataConnect.getConnection();
             if (con != null) {
-                String sql = "SELECT ? FROM products WHERE product_id=?";
+                String sql = "SELECT * FROM products WHERE product_id=?";
                 ps = con.prepareStatement(sql);
-                ps.setString(1, parameter);
-                ps.setInt(2, id);
-                ps.executeUpdate();
+                ps.setInt(1, id);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    product = new Product(
+                            rs.getInt("product_id"),
+                            rs.getString("name"),
+                            rs.getString("category"),
+                            rs.getInt("quantity"),
+                            rs.getInt("quantity_sold"),
+                            rs.getBoolean("on_sale"),
+                            rs.getString("date_added"),
+                            rs.getDouble("price"),
+                            rs.getString("description"),
+                            rs.getInt("gallery_id"));
+                }
             }
         } catch (Exception ex) {
             System.out.println("Product request error when executing query; ProductDAO.requestProductName() -->" + ex.getMessage());
@@ -61,6 +74,7 @@ public class ProductDAO {
                 System.out.println("Product request error when closing database connection or prepared statement; ProductDAO.requestProductName() -->" + ex.getMessage());
             }
         }
+        return product;
     }
 
     public static void deleteProduct(int id) {
@@ -95,7 +109,6 @@ public class ProductDAO {
             con = DataConnect.getConnection();
             ps = con.prepareStatement("SELECT COUNT(*) AS `amount` FROM products");
             ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
                 amount = rs.getLong("amount");
             }

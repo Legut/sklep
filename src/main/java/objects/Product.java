@@ -42,7 +42,7 @@ public class Product {
     public void setId(int id) {
         this.id = id;
     }
-    public long getId() {
+    public int getId() {
         return id;
     }
     public String getName() {
