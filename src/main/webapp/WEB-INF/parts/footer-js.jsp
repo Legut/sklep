@@ -6,6 +6,7 @@
     <!-- Dodatkowe skrypty -->
     <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/owl.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/additional.jsp"></script>
     <script language = "text/Javascript"> 
       cleared[0] = cleared[1] = cleared[2] = 0;
       function clearField(t){
