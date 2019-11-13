@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><configuration>
+    <singleConf id="1">
+        <name>logo</name>
+        <value>assets/images/monopolowy24h-logo.png</value>
+    </singleConf>
+    <singleConf id="2">
+        <name>logoAlt</name>
+        <value>Monopolowy24h - najlepszy sklep monopolowy online!</value>
+    </singleConf>
+    <singleConf id="3">
+        <name>logoTitle</name>
+        <value>Monopolowy24h - najlepszy sklep monopolowy online!</value>
+    </singleConf>
+    <singleConf id="4">
+        <name>seoTitle</name>
+        <value>Monopolowy24h - Internetowy sklep monopolowy z dostawą do domu</value>
+    </singleConf>
+    <singleConf id="5">
+        <name>seoDesc</name>
+        <value>Jedyny taki - monopolowy sklep z dostawą do domu. Zamów co potrzebujesz! Z przyjemnością dostarczymy Ci trunki.</value>
+    </singleConf>
+    <singleConf id="6">
+        <name>sloganText</name>
+        <value>Jedyny internetowy sklep monopolowy z dostawą do domu!</value>
+    </singleConf>
+    <singleConf id="7">
+        <name>sidebarAlignment</name>
+        <value>2</value>
+    </singleConf>
+    <singleConf id="8">
+        <name>h1FontSize</name>
+        <value>22</value>
+    </singleConf>
+    <singleConf id="9">
+        <name>h1FontWeight</name>
+        <value>500</value>
+    </singleConf>
+    <singleConf id="10">
+        <name>h2FontSize</name>
+        <value>32</value>
+    </singleConf>
+    <singleConf id="11">
+        <name>h2FontWeight</name>
+        <value>500</value>
+    </singleConf>
+    <singleConf id="12">
+        <name>h3FontSize</name>
+        <value>28</value>
+    </singleConf>
+    <singleConf id="13">
+        <name>h3FontWeight</name>
+        <value>500</value>
+    </singleConf>
+    <singleConf id="14">
+        <name>h4FontSize</name>
+        <value>24</value>
+    </singleConf>
+    <singleConf id="15">
+        <name>h4FontWeight</name>
+        <value>500</value>
+    </singleConf>
+    <singleConf id="16">
+        <name>h5FontSize</name>
+        <value>20</value>
+    </singleConf>
+    <singleConf id="17">
+        <name>h5FontWeight</name>
+        <value>500</value>
+    </singleConf>
+    <singleConf id="18">
+        <name>h6FontSize</name>
+        <value>16</value>
+    </singleConf>
+    <singleConf id="19">
+        <name>h6FontWeight</name>
+        <value>500</value>
+    </singleConf>
+    <singleConf id="20">
+        <name>pFontSize</name>
+        <value>14</value>
+    </singleConf>
+    <singleConf id="100">
+        <name>pFontWeight</name>
+        <value>400</value>
+    </singleConf>
+    <singleConf id="201">
+        <name>fbVisibility</name>
+        <value>1</value>
+    </singleConf>
+    <singleConf id="21">
+        <name>fbLink</name>
+        <value>https://www.facebook.com/</value>
+    </singleConf>
+    <singleConf id="101">
+        <name>fbFollow</name>
+        <value>2</value>
+    </singleConf>
+    <singleConf id="102">
+        <name>fbTarget</name>
+        <value>2</value>
+    </singleConf>
+    <singleConf id="202">
+        <name>fbTitle</name>
+        <value>FB title</value>
+    </singleConf>
+    <singleConf id="203">
+        <name>twitterVisibility</name>
+        <value>1</value>
+    </singleConf>
+    <singleConf id="22">
+        <name>twitterLink</name>
+        <value>https://twitter.com/</value>
+    </singleConf>
+    <singleConf id="103">
+        <name>twitterFollow</name>
+        <value>2</value>
+    </singleConf>
+    <singleConf id="104">
+        <name>twitterTarget</name>
+        <value>2</value>
+    </singleConf>
+    <singleConf id="204">
+        <name>twitterTitle</name>
+        <value>Twitter Title</value>
+    </singleConf>
+    <singleConf id="205">
+        <name>igVisibility</name>
+        <value>1</value>
+    </singleConf>
+    <singleConf id="23">
+        <name>igLink</name>
+        <value>https://www.instagram.com/</value>
+    </singleConf>
+    <singleConf id="105">
+        <name>igFollow</name>
+        <value>2</value>
+    </singleConf>
+    <singleConf id="106">
+        <name>igTarget</name>
+        <value>2</value>
+    </singleConf>
+    <singleConf id="206">
+        <name>igTitle</name>
+        <value>Instagram Title</value>
+    </singleConf>
+    <singleConf id="207">
+        <name>ytVisibility</name>
+        <value>1</value>
+    </singleConf>
+    <singleConf id="24">
+        <name>ytLink</name>
+        <value>https://www.youtube.com/</value>
+    </singleConf>
+    <singleConf id="107">
+        <name>ytFollow</name>
+        <value>2</value>
+    </singleConf>
+    <singleConf id="108">
+        <name>ytTarget</name>
+        <value>2</value>
+    </singleConf>
+    <singleConf id="208">
+        <name>ytTitle</name>
+        <value>Youtube Title</value>
+    </singleConf>
+    <singleConf id="25">
+        <name>copyrights</name>
+        <value>Copyright © 2019 Monopolowy 24h</value>
+    </singleConf>
+    <singleConf id="26">
+        <name>contactMail</name>
+        <value>wlegutowski@gmail.com</value>
+    </singleConf>
+    <singleConf id="27">
+        <name>additionalCss</name>
+        <value>.jakis-css{&#13;
+    font-size: 12px;&#13;
+}</value>
+    </singleConf>
+    <singleConf id="28">
+        <name>additionalJs</name>
+        <value>function jakisJs () {&#13;
+    var nicTuNieMa;&#13;
+}</value>
+    </singleConf>
+    <singleConf id="29">
+        <name>hookBeforeHeadEnd</name>
+        <value>&lt;link rel="stylesheet" href="/nie/ma/takiego.css"&gt;</value>
+    </singleConf>
+    <singleConf id="30">
+        <name>hookAfterBody</name>
+        <value>&lt;span style="display: none"&gt;Jakiś hook po body&lt;/span&gt;</value>
+    </singleConf>
+    <singleConf id="31">
+        <name>hookAfterFooter</name>
+        <value>&lt;span style="display: none"&gt;Jakiś hook na pocz stopki&lt;/span&gt;</value>
+    </singleConf>
+    <singleConf id="32">
+        <name>hookBeforeFooterEnd</name>
+        <value>&lt;span style="display: none"&gt;Jakiś hook przed koncem stopki&lt;/span&gt;</value>
+    </singleConf>
+    <singleConf id="33">
+        <name>tester</name>
+        <value>#00ffff</value>
+    </singleConf>
+    <singleConf id="34">
+        <name>tester2</name>
+        <value>#ff80ff</value>
+    </singleConf>
+</configuration>
