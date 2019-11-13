@@ -5,7 +5,7 @@
 <!-- Nawigacja sidebar -->
 <jsp:include page="/WEB-INF/admin/parts/sidebar-menu.jsp"/>
 <!-- Kontent -->
-<div class="content">
+<div class="content user-manager">
     <div class="content-inside">
         <h1 class="backend-page-title"><i class="fas fa-users"></i> Menadżer użytkowników - edytuj użytkownika</h1>
         <div class="form-container">
@@ -24,6 +24,7 @@
                 <div class="input-row">
                     <p class="input-element"><span>Nazwisko:</span> <br /> <input type="text" name="lastname" value="<% out.println(singleUser.getLast_name()); %>" required></p>
                     <p class="input-element"><span>Email:</span> <br /> <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value="<% out.println(singleUser.getUser_email()); %>" required></p>
+                </div>
                 <div class="input-row">
                     <p class="input-element"><span>Klucz aktywacyjny:</span> <br /> <input type="text" name="userActivationKey" maxlength="20" value="<% out.println(singleUser.getUser_activation()); %>"></p>
                     <p class="input-element"><span>Data urodzenia:</span> <br /> <input type="date" name="birthDate" value="<% out.print(singleUser.getBirth_date()); %>" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" min="1900-01-01" required></p></div>
