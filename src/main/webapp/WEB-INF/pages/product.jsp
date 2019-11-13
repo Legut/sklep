@@ -75,8 +75,10 @@
                             </h6>
                         </div>
                         <div class="share">
-                            <h6>Udostępnij: <span><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
-                                    class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-twitter"></i></a></span>
+                            <h6>Udostępnij: <span><a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a></span>
                             </h6>
                         </div>
                     </div>

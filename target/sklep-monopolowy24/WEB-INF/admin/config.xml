@@ -1,28 +1,27 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<configuration>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><configuration>
     <singleConf id="1">
         <name>logo</name>
         <value>assets/images/monopolowy24h-logo.png</value>
     </singleConf>
     <singleConf id="2">
         <name>logoAlt</name>
-        <value>Monopolowy24h - najlepszy sklep monopolowy online!</value>
+        <value>Monopolowy24h - przyklad najlepszy sklep monopolowy online!</value>
     </singleConf>
     <singleConf id="3">
         <name>logoTitle</name>
-        <value>Monopolowy24h - najlepszy sklep monopolowy online!</value>
+        <value>Monopolowy24h - testy najlepszy sklep monopolowy online!</value>
     </singleConf>
     <singleConf id="4">
         <name>seoTitle</name>
-        <value>Monopolowy24h - Internetowy sklep monopolowy z dostawą do domu</value>
+        <value>ZIOM Monopolowy24h - tsa tsa Internetowy sklep monopolowy z dostawą do domu</value>
     </singleConf>
     <singleConf id="5">
         <name>seoDesc</name>
-        <value>Jedyny taki - monopolowy sklep z dostawą do domu. Zamów co potrzebujesz! Z przyjemnością dostarczymy Ci trunki.</value>
+        <value>Najlepszy sklep Jedyny taki - monopolowy sklep z dostawą do domu. Zamów co potrzebujesz! Z przyjemnością dostarczymy Ci trunki.</value>
     </singleConf>
     <singleConf id="6">
         <name>sloganText</name>
-        <value>Jedyny internetowy sklep monopolowy z dostawą do domu!</value>
+        <value>Jedyny internetowy sklep dla meneli monopolowy z dostawą do domu!</value>
     </singleConf>
     <singleConf id="7">
         <name>sidebarAlignment</name>
@@ -134,7 +133,7 @@
     </singleConf>
     <singleConf id="105">
         <name>igFollow</name>
-        <value>2</value>
+        <value>1</value>
     </singleConf>
     <singleConf id="106">
         <name>igTarget</name>
@@ -166,7 +165,7 @@
     </singleConf>
     <singleConf id="25">
         <name>copyrights</name>
-        <value>Copyright © 2019 Monopolowy 24h</value>
+        <value>Copyright © 2019 mistrzostwoooo Monopolowy 24h</value>
     </singleConf>
     <singleConf id="26">
         <name>contactMail</name>
@@ -202,10 +201,10 @@
     </singleConf>
     <singleConf id="33">
         <name>tester</name>
-        <value>#000000</value>
+        <value>#800080</value>
     </singleConf>
     <singleConf id="34">
         <name>tester2</name>
-        <value>#111111</value>
+        <value>#800040</value>
     </singleConf>
 </configuration>

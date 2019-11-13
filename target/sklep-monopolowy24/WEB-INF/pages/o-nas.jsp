@@ -21,16 +21,18 @@
           <div class="col-md-6">
             <div class="right-content">
               <h4>Phasellus vel interdum elit</h4>
-              <p>Photo Credit goes to Pexels website. Aliquam erat volutpat. Pellentesque fringilla, ligula consectetur cursus scelerisque, leo elit pellentesque sapien, et pharetra arcu elit vitae sem. Suspendisse erat dui, condimentum in mi ac, varius tempor sapien. Donec in justo sit amet ex aliquet maximus ac quis erat.</p> 
-              <br>
-              <p>Donec fermentum tincidunt tellus quis fermentum. Proin eget imperdiet purus. Nulla facilisi. Aliquam tincidunt porttitor dui sed euismod. Duis est libero, rhoncus fermentum turpis id, tempus fringilla ipsum. Nullam venenatis tincidunt neque vel hendrerit. Suspendisse porta pretium porttitor.</p>
-              <br>
-              <p>Sed purus quam, ultricies eu leo in, sollicitudin varius quam. Proin dictum urna ac diam fermentum tempus. Pellentesque urna urna, ullamcorper a tincidunt dignissim, venenatis in nisi. Vivamus in volutpat tellus. Etiam fermentum luctus posuere.</p>
-              <br>
-              <p>Pixie HTML Template can be converted into your desired CMS theme. You can use this Bootstrap v4.1.3 layout for any online shop. Please tell your friends about Tooplate. Thank you.</p>
-              <div class="share">
-                <h6>Find us on: <span><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fab fa-twitter"></i></a></span></h6>
-              </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim suspendisse in est ante in nibh. In iaculis nunc sed augue lacus viverra vitae congue eu. Porttitor massa id neque aliquam vestibulum morbi blandit cursus.</p>
+                <br>
+                <p>Diam in arcu cursus euismod quis viverra nibh cras. In nibh mauris cursus mattis molestie a iaculis at. At urna condimentum mattis pellentesque id nibh. Vel orci porta non pulvinar neque laoreet suspendisse interdum. Auctor neque vitae tempus quam pellentesque nec nam aliquam.</p>
+                <br>
+                <p>Semper auctor neque vitae tempus quam pellentesque nec nam aliquam. Sit amet luctus venenatis lectus magna fringilla urna porttitor. Urna et pharetra pharetra massa massa ultricies mi quis. Sapien faucibus et molestie ac feugiat sed lectus vestibulum mattis. Tempor orci eu lobortis elementum nibh tellus molestie nunc non. Sed arcu non odio euismod lacinia.</p>
+                <div class="share">
+                    <h6>Możesz się również z nami skontaktować przez: <span>
+                          <a href="#"><i class="fab fa-facebook-f"></i></a>
+                          <a href="#"><i class="fab fa-twitter"></i></a>
+                          <a href="#"><i class="fab fa-instagram"></i></a>
+                          <a href="#"><i class="fab fa-youtube"></i></a></span></h6>
+                </div>
             </div>
           </div>
         </div>
