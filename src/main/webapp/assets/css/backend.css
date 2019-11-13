@@ -65,8 +65,7 @@ body {
 }
 
 /* kolorystyka menadżera uzytkowników */
-.user-manager .backend-page-title, .user-manager .data .user-list-header-item,
-.user-manager .pages-list a div, .user-manager .pages-list a:hover div,
+.user-manager .backend-page-title, .user-manager .data .user-list-header-item, .user-manager .pages-list a:hover div,
 .user-manager .pages-list .pagination-active, .user-manager .submit-element input[type=submit] {
     background-color: #6c7ae0;
 }
