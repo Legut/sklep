@@ -18,6 +18,9 @@
                     </a>
                 </ul>
             </div>
+            <a href="${pageContext.request.contextPath}/admin/general-conf" class="backend-navigation-link" title="Ustawienia główne">
+                <li class="backend-navigation-element"><i class="fas fa-cogs"></i> Ustawienia główne</li>
+            </a>
         </ul>
     </div>
 </div>
