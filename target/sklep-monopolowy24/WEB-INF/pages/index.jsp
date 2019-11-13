@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.security.Principal" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="/WEB-INF/parts/overall-header.jsp"/>
 <jsp:include page="/WEB-INF/parts/sloganbar.jsp"/>
 <!-- Nawigacja -->
@@ -22,6 +22,13 @@
     </div>
 </div>
 <!-- Koniec Bannera -->
+
+<div class="tester">
+    <h1>tester1</h1>
+</div>
+<div class="tester2">
+    <h1>tester2</h1>
+</div>
 
 <!-- Początek wyróżnionych produktów -->
 <div class="featured-items">

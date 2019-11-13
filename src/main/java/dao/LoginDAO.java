@@ -10,7 +10,7 @@ import util.DataConnect;
 
 public class LoginDAO {
 
-    public static boolean validate(String user, String password) {
+    public static boolean validate(String user, String password) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
 
@@ -29,11 +29,14 @@ public class LoginDAO {
             System.out.println("Login error; LoginDAO.validate() -->" + ex.getMessage());
             return false;
         } finally {
+            if (ps != null) {
+                ps.close();
+            }
             DataConnect.close(con);
         }
         return false;
     }
-    public static String checkRole(String user, String password) {
+    public static String checkRole(String user, String password) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
         try {
@@ -49,12 +52,15 @@ public class LoginDAO {
             return "UNDEFINED";
         } finally {
             DataConnect.close(con);
+            if (ps != null) {
+                ps.close();
+            }
         }
         return "UNDEFINED";
     }
-    public static String checkAuth(String user, String password) {
+    public static String checkAuth(String user, String password) throws SQLException {
         Connection con = null;
-        PreparedStatement ps;
+        PreparedStatement ps = null;
         try {
             con = DataConnect.getConnection();
             ps = con.prepareStatement("SELECT user_activation_key FROM users WHERE user_login = '" + user + "' and user_pass = '" + password + "'");
@@ -68,12 +74,15 @@ public class LoginDAO {
             return "exception";
         } finally {
             DataConnect.close(con);
+            if (ps != null) {
+                ps.close();
+            }
         }
         return "exception";
     }
-    public static ArrayList<String> checkUserData(String user, String password) {
+    public static ArrayList<String> checkUserData(String user, String password) throws SQLException {
         Connection con = null;
-        PreparedStatement ps;
+        PreparedStatement ps = null;
         ArrayList<String> userData = new ArrayList<>();
         try {
             con = DataConnect.getConnection();
@@ -91,6 +100,9 @@ public class LoginDAO {
             System.out.println("Login error while checking auth key; LoginDAO.checkAuth() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
+            if (ps != null) {
+                ps.close();
+            }
         }
         return null;
     }

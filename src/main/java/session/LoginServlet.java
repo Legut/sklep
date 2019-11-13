@@ -4,6 +4,7 @@ import dao.LoginDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -28,10 +29,20 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.user = request.getParameter("user");
 		this.pwd = request.getParameter("pwd");
-		boolean valid = LoginDAO.validate(user, pwd);
+		boolean valid = false;
+		try {
+			valid = LoginDAO.validate(user, pwd);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		if(valid){
-			ArrayList<String> userData = LoginDAO.checkUserData(user, pwd);
+			ArrayList<String> userData = null;
+			try {
+				userData = LoginDAO.checkUserData(user, pwd);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			String user_login = userData.get(0);
 			String user_email = userData.get(1);
 			String user_activation_key = userData.get(2);

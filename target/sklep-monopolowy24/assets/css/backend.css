@@ -3,6 +3,8 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0px;
 }
+
+/* Wygląd panelu bocznego */
 .sidebar-left {
     width: 200px;
     background-color: #23282f;
@@ -15,6 +17,21 @@ body {
     list-style: none;
     padding: 0px;
     margin: 0px;
+}
+.sidebar-left .backend-navigation-list .dropdown {
+    list-style: none;
+    padding: 0px;
+    transition: max-height 3s ease-out 3s;
+    max-height: 0;
+    overflow: hidden;
+    background-color: #2e343e;
+}
+.sidebar-left .backend-navigation-list .dropdown li{
+    padding: 10px 15px;
+}
+.sidebar-left .backend-navigation-list .users-link:hover .dropdown {
+    transition: max-height 3s ease-out 0s;
+    max-height: 999px;
 }
 .sidebar-left .backend-navigation-list .backend-navigation-element {
     padding: 10px 15px;
@@ -29,6 +46,8 @@ body {
 .sidebar-left .backend-navigation-list .backend-navigation-link:hover .backend-navigation-element {
     background-color: #444d5b;
 }
+
+/* Wygląd zawartości każdej z podstron */
 .content {
     display: inline-flex;
     height: 100%;
@@ -39,15 +58,58 @@ body {
     padding: 0px 40px;
 }
 .backend-page-title {
-    background-color: #6c7ae0;
     color: #fff;
     padding: 10px 20px;
     border-radius: 0px 0px 30px 0px;
     display: inline-block;
 }
+
+/* kolorystyka menadżera uzytkowników */
+.user-manager .backend-page-title, .user-manager .data .user-list-header-item,
+.user-manager .pages-list a div, .user-manager .pages-list a:hover div,
+.user-manager .pages-list .pagination-active, .user-manager .submit-element input[type=submit] {
+    background-color: #6c7ae0;
+}
+.user-manager .pages-list a div {
+    border-color: #6c7ae0;
+}
+.user-manager .submit-element input[type=submit]:hover {
+    background-color: #96a0e9;
+}
+
+/* kolorystyka ustawień głównych */
+.general-conf .backend-page-title, .general-conf .submit-element input[type=submit],
+.general-conf .activate-tab-bar, .general-conf .activate-tab-button {
+    background-color: #E08C6C;
+}
+.general-conf .activate-tab-button:hover, .general-conf .activate-tab-bar .active {
+    background-color: #fff;
+    color: #E08C6C;
+}
+.general-conf .submit-element input[type=submit]:hover {
+    background-color: #E8AC96;
+}
+
+.general-conf .input-element {
+    margin: 0px
+}
+.general-conf .input-section {
+    margin-bottom: 20px;
+}
+.general-conf .input-section-title {
+    margin: 0px;
+    color: #E08C6C;
+    border-bottom: 2px solid #E8AC96;
+    max-width: 300px;
+    padding: 5px 0px;
+    margin-bottom: 5px;
+}
+
+/* Wygląd tabeli z danymi */
 .filters {
-    text-align: center;
     background-color: #f8f6ff;
+    padding: 20px;
+    margin-bottom: 10px;
 }
 .data {
     width: 100%;
@@ -62,7 +124,6 @@ body {
 .data .user-list-header-item {
     font-weight: bold;
     font-size: 18px;
-    background-color: #6c7ae0;
     color: #fff;
     line-height: 1.4;
     padding-top: 18px;
@@ -85,18 +146,71 @@ body .data tbody .user-row:nth-child(even) {
 .pages-list a div {
     display: inline-block;
     padding: 10px;
-    color: #6c7ae0;
     background-color: #f8f6ff;
-    border: 1px solid #6c7ae0;
+    border-width: 1px;
+    border-style: solid;
 }
 .pages-list a:hover div {
-    background-color: #6c7ae0;
     color: #ffffff;
 }
 .pages-list .pagination-active {
-    background-color: #6c7ae0!important;
     color: #ffffff!important;
 }
 .pages-list .three-dots-sep {
     display: inline-block;
+}
+.info-msg {
+    color: red;
+}
+
+/* Wygląd formularzy */
+.input-element input[type=number] {
+    width: 75px;
+}
+.input-element select {
+    width: 100px;
+}
+.input-element input[type=text], .input-element input[type=email], .input-element input[type=date], .input-element input[type=password] {
+    width: 300px;
+}
+.input-element input[type=text], .input-element input[type=email], .input-element input[type=date], .input-element textarea,
+.input-element input[type=password], .input-element select, .input-element input[type=number] {
+    padding: 8px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.user-manager .input-element {
+    display: inline-block;
+}
+
+.submit-element input[type=submit] {
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.user-manager .submit-element input[type=submit]{
+    width: 100%;
+}
+.general-conf .submit-element input[type=submit]{
+    min-width: 300px;
+}
+
+/* wygląd tabów */
+.activate-tab-button {
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.4;
+    padding: 5px 10px;
+    text-align: center;
+    border: none;
+}
+.activate-tab-bar {
+    margin-bottom: 20px;
 }
