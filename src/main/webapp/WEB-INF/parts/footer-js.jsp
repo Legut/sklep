@@ -7,7 +7,14 @@
     <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/owl.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/additional.jsp"></script>
-    <script language = "text/Javascript"> 
+
+    <!-- Skrypty tylko na single product -->
+    <script src="${pageContext.request.contextPath}/assets/js/isotope.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/additional-js-for-single-product.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/flex-slider.js"></script>
+
+    <!-- Dodatkowe inline skrypty -->
+    <script language = "text/Javascript">
       cleared[0] = cleared[1] = cleared[2] = 0;
       function clearField(t){
       if(! cleared[t.id]){

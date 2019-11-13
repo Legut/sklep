@@ -1,69 +1,8 @@
-<%@ page import="objects.Product" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-          content="Jedyny taki - monopolowy sklep z dostawÄ do domu. ZamÃ³w co potrzebujesz! Z przyjemnoÅciÄ dostarczymy Ci trunki.">
-    <meta name="author" content="Wojciech Legutowski, Paweł Osiwała, Sylwester Wrzesiński">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-
-    <title>Monopolowy24h - Internetowy sklep monopolowy z dostawą do domu</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Pliki CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fa/css/fontawesome.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/owl.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/flex-slider.css">
-</head>
-
-<body>
-<div id="pre-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <span>Jedyny internetowy sklep monopolowy z dostawą do domu!</span>
-            </div>
-        </div>
-    </div>
-</div>
-
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/parts/overall-header.jsp"/>
+<jsp:include page="/WEB-INF/parts/sloganbar.jsp"/>
 <!-- Nawigacja -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <a class="navbar-brand" href="#"><img
-                src="${pageContext.request.contextPath}/assets/images/monopolowy24h-logo.png"
-                alt="Monopolowy 24h - logo"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/sklep">Sklep
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/o-nas">O nas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/kontakt">Kontakt</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+<jsp:include page="/WEB-INF/parts/navigation.jsp"/>
 <!-- Początek zawartości strony -->
 <div class="single-product">
     <div class="container">
@@ -230,120 +169,7 @@
 </div>
 <!-- Koniec podobnych pozycji -->
 
-<!-- PoczÄtek formularza subskrybcji -->
-<div class="subscribe-form">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-heading">
-                    <div class="line-dec"></div>
-                    <h1>Zapisz się do Newslettera!</h1>
-                </div>
-            </div>
-            <div class="col-md-8 offset-md-2">
-                <div class="main-content">
-                    <p>Zapisując się do naszego Newslettera zgadzasz się na przetwarzanie Twoich danych na potrzeby
-                        marketingowe. Jednocześnie informujemy, że w każdym momencie możesz wypisać się z tej usługi.
-                        Administratorem danych osobowych jest firma Monopolowy 24h, ul. Anonimowa 6/7, 67-123, Miastowo.
-                        Więcej informacji znajdziesz w <a href="#" style="color: #ffffff">Polityce prywatności</a></p>
-                    <div class="container">
-                        <form id="subscribe" action="" method="get">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <fieldset>
-                                        <input name="email" type="text" class="form-control" id="email"
-                                               onfocus="if(this.value == 'Twój Email...') { this.value = ''; }"
-                                               onBlur="if(this.value == '') { this.value = 'Twój Email...';}"
-                                               value="Twój Email..." required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-5">
-                                    <fieldset>
-                                        <button type="submit" id="form-submit" class="button">Zapisz się!</button>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Koniec formularza subskrybcji -->
-
-<!-- Początek stopki -->
-<div class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="logo">
-                    <img src="${pageContext.request.contextPath}/assets/images/monopolowy24h-logo.png"
-                         alt="Monopolowy 24h - logo">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="footer-menu">
-                    <ul>
-                        <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                        <li><a href="#">Pomoc</a></li>
-                        <li><a href="#">Polityka prywatności</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Kontakt</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="social-icons">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Footer Ends Here -->
-
-<!-- PoczÄtek bloku pod stopkÄ -->
-<div class="sub-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="copyright-text">
-                    <p>Copyright &copy; 2019 Monopolowy 24h - Design: <a rel="nofollow" href="#">Wojciech Legutowski</a>,
-                        <a rel="nofollow" href="#">Paweł Osiwała</a>, <a rel="nofollow" href="#">Sylwester
-                            Wrzesiński</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Koniec bloku pod stopką -->
-
-<!-- Bootstrap core JavaScript -->
-<script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Dodatkowe skrypty -->
-<script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/owl.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/isotope.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/additional-js-for-single-product.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/flex-slider.js"></script>
-<script language="text/Javascript">
-    cleared[0] = cleared[1] = cleared[2] = 0;
-
-    function clearField(t) {
-        if (!cleared[t.id]) {
-            cleared[t.id] = 1;
-            t.value = '';
-            t.style.color = '#fff';
-        }
-    }
-</script>
-</body>
-</html>
+<!-- Formularz do subskrypcji -->
+<jsp:include page="/WEB-INF/parts/subscribe-form.jsp"/>
+<!-- Stopka -->
+<jsp:include page="/WEB-INF/parts/overall-footer.jsp"/>

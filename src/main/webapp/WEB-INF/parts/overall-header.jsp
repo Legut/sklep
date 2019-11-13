@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/owl.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/additional.jsp">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/flex-slider.css">
     <% String rola = null;
     if (session.getAttribute("user_role")!=null){
     	rola = session.getAttribute("user_role").toString();
