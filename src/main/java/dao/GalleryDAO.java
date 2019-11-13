@@ -32,12 +32,8 @@ public class GalleryDAO {
         } catch (Exception ex) {
             System.out.println("Product request error when executing query; ProductDAO.requestProductName() -->" + ex.getMessage());
         } finally {
-            try {
-                con.close();
-                ps.close();
-            } catch (Exception ex) {
-                System.out.println("Product request error when closing database connection or prepared statement; ProductDAO.requestProductName() -->" + ex.getMessage());
-            }
+            DataConnect.close(con);
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage()); }
         }
         return gallery;
     }
@@ -46,7 +42,7 @@ public class GalleryDAO {
     public static long amountOfProducts() {
         Connection con = null;
         long amount = 0;
-        PreparedStatement ps;
+        PreparedStatement ps = null;
 
         try {
             con = DataConnect.getConnection();
@@ -59,6 +55,7 @@ public class GalleryDAO {
             System.out.println("Error while getting product data from db; ProductDAO.amountOfProducts() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage()); }
         }
         return amount;
     }

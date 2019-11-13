@@ -30,12 +30,8 @@ public class ProductDAO {
         } catch (Exception ex) {
             System.out.println("Product add error when executing query; ProductDAO.addProduct() -->" + ex.getMessage());
         } finally {
-            try {
-                con.close();
-                ps.close();
-            } catch (Exception ex) {
-                System.out.println("Product add error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage());
-            }
+            DataConnect.close(con);
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage()); }
         }
     }
 
@@ -67,12 +63,8 @@ public class ProductDAO {
         } catch (Exception ex) {
             System.out.println("Product request error when executing query; ProductDAO.requestProductName() -->" + ex.getMessage());
         } finally {
-            try {
-                con.close();
-                ps.close();
-            } catch (Exception ex) {
-                System.out.println("Product request error when closing database connection or prepared statement; ProductDAO.requestProductName() -->" + ex.getMessage());
-            }
+            DataConnect.close(con);
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage()); }
         }
         return product;
     }
@@ -91,19 +83,15 @@ public class ProductDAO {
         } catch (Exception ex) {
             System.out.println("Product delete error when executing query; ProductDAO.addProduct() -->" + ex.getMessage());
         } finally {
-            try {
-                con.close();
-                ps.close();
-            } catch (Exception ex) {
-                System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage());
-            }
+            DataConnect.close(con);
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage()); }
         }
     }
 
     public static long amountOfProducts() {
         Connection con = null;
         long amount = 0;
-        PreparedStatement ps;
+        PreparedStatement ps = null;
 
         try {
             con = DataConnect.getConnection();
@@ -116,13 +104,14 @@ public class ProductDAO {
             System.out.println("Error while getting product data from db; ProductDAO.amountOfProducts() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage()); }
         }
         return amount;
     }
 
     public static ArrayList<Product> getProductsList(long startPosition, long amount) {
         Connection con = null;
-        PreparedStatement ps;
+        PreparedStatement ps = null;
         ArrayList<Product> productsList = new ArrayList<>();
         try {
             con = DataConnect.getConnection();
@@ -147,6 +136,7 @@ public class ProductDAO {
             System.out.println("Error while getting products data from db; ProductDAO.getProductsList() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage()); }
         }
         return productsList;
     }
