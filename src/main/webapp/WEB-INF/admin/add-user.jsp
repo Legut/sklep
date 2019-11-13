@@ -4,7 +4,7 @@
 <!-- Nawigacja sidebar -->
 <jsp:include page="/WEB-INF/admin/parts/sidebar-menu.jsp"/>
 <!-- Kontent -->
-<div class="content">
+<div class="content user-manager">
     <div class="content-inside">
         <h1 class="backend-page-title"><i class="fas fa-users"></i> Menadżer użytkowników - dodaj użytkownika</h1>
         <p class="info-msg"><% if(request.getAttribute("msg") != null){ out.println(request.getAttribute("msg")); request.setAttribute("msg", null); } %></p>
