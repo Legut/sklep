@@ -23,8 +23,8 @@ public class ShowProduct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String parameter = request.getParameter("id");
         try {
-            int id = Integer.parseInt(parameter);
-            int gallery_id;
+            long id = Long.parseLong(parameter);
+            long gallery_id;
             Product product = ProductDAO.getProduct(id);
             if (product != null) {
                 request.setAttribute("name", product.getName());

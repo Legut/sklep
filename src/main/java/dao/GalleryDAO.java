@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class GalleryDAO {
-    public static Gallery getGallery(int id) {
+    public static Gallery getGallery(long id) {
         PreparedStatement ps = null;
         Connection con = null;
         Gallery gallery = null;
@@ -19,7 +19,7 @@ public class GalleryDAO {
             if (con != null) {
                 String sql = "SELECT * FROM photo_gallery WHERE gallery_id=?";
                 ps = con.prepareStatement(sql);
-                ps.setInt(1, id);
+                ps.setLong(1, id);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     gallery = new Gallery(rs.getInt("gallery_id"),

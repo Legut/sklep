@@ -2,20 +2,20 @@ package objects;
 
 public class Product {
 
-    private int id;
-    private String name;
+    private long id;
+    private String product_name;
     private String category;
-    private int quantity;
-    private int quantity_sold;
+    private long quantity;
+    private long quantity_sold;
     private boolean on_sale;
     private String date_added;
     private double price;
     private String description;
-    private int gallery_id;
+    private long gallery_id;
 
-    public Product(int id, String name, String category, int quantity, int quantity_sold, boolean on_sale, String date_added, double price, String description, int gallery_id) {
+    public Product(long id, String product_name, String category, long quantity, long quantity_sold, boolean on_sale, String date_added, double price, String description, long gallery_id) {
         this.id = id;
-        this.name = name;
+        this.product_name = product_name;
         this.category = category;
         this.quantity = quantity;
         this.quantity_sold = quantity_sold;
@@ -28,7 +28,7 @@ public class Product {
 
     public Product(){
         this.id = -1;
-        this.name = null;
+        this.product_name = null;
         this.category = null;
         this.quantity = 0;
         this.quantity_sold = 0;
@@ -42,19 +42,19 @@ public class Product {
     public void setId(int id) {
         this.id = id;
     }
-    public int getId() {
+    public long getId() {
         return id;
     }
     public String getName() {
-        return name;
+        return product_name;
     }
     public String getCategory() {
         return category;
     }
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
-    public int getQuantity_sold() {
+    public long getQuantity_sold() {
         return quantity_sold;
     }
     public Boolean getOn_sale() {
@@ -69,7 +69,7 @@ public class Product {
     public String getDescription() {
         return description;
     }
-    public int getGallery_id() {
+    public long getGallery_id() {
         return gallery_id;
     }
 }

@@ -14,14 +14,10 @@ import java.util.ArrayList;
 
 @WebServlet("/admin/user-manager")
 public class UserManager extends HttpServlet {
-    public static long page;
-    private static long amountPerPage;
-    private static long amountOfUsers;
-    private static String deleteId;
-    private static String searchByUserName;
-    private static int searchOption;
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        long page, amountPerPage, amountOfUsers;
+        String deleteId, searchByUserName;
+        int searchOption;
 
         // Ustawianie wartości domyślnych i reagowanie na pojawienie się zmiennych
         if(request.getParameter("page") == null){ page = 0; } else { page = Long.parseLong(request.getParameter("page")); }

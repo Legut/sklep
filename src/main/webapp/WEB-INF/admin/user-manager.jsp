@@ -18,7 +18,7 @@
                 if(request.getAttribute("amountPerPage") != null){ amountPerPage = (int)((long)request.getAttribute("amountPerPage")); } else { amountPerPage = 0; }
                 if(request.getAttribute("currentPage") != null){ currentPage = (int)((long)request.getAttribute("currentPage")); } else { currentPage = 0; }
                 if(request.getAttribute("searchOption") != null){ searchOption = (int)request.getAttribute("searchOption"); } else { searchOption = 2; }
-                if(request.getAttribute("searchByUserName") != null){ searchByUserName = (String) request.getAttribute("searchByUserName"); } else { searchByUserName = null; }
+                if(request.getAttribute("searchByUserName") != null){ searchByUserName = (String) request.getAttribute("searchByUserName"); } else { searchByUserName = ""; }
             %>
             <form action="/admin/user-manager" method="post">
                 <p>Ile użytkowników na jedną stronę:
@@ -33,12 +33,12 @@
                         } %>
                 </select></p>
                 <p>Wyszukaj login który
-                <select name="searchOption">
-                    <option value="1" <% if(searchOption==1){ out.println("selected");} %>>zaczyna się na</option>
-                    <option value="2" <% if(searchOption==2){ out.println("selected");} %>>zawiera</option>
-                    <option value="3" <% if(searchOption==3){ out.println("selected");} %>>kończy się na</option>
-                </select>
-                <input type="text" name="searchByUserName" value="<% if(searchByUserName!=null){ out.println(searchByUserName);} %>"></p>
+                    <select name="searchOption">
+                        <option value="1" <% if(searchOption==1){ out.println("selected");} %>>zaczyna się na</option>
+                        <option value="2" <% if(searchOption==2){ out.println("selected");} %>>zawiera</option>
+                        <option value="3" <% if(searchOption==3){ out.println("selected");} %>>kończy się na</option>
+                    </select>
+                    <input type="text" name="searchByUserName" value="<% if(searchByUserName!=null){ out.println(searchByUserName);} %>"></p>
                 <input type="submit" value="Zastosuj">
             </form>
         </div>
@@ -63,9 +63,9 @@
                     if (!list.isEmpty()) {
                         for (User user : list) {
                             out.println("<tr class=\"user-row user-no-" + i + "\">" +
-                                    "<td class=\"user-row-item user-login\">" +
+                                    "<td class=\"user-row-item user-edit\">" +
                                         "<a href=\"" + request.getContextPath() + "/admin/user-manager/edit-user?userId=" + user.getId() + "\">edytuj</a> / " +
-                                        "<a href=\"/admin/user-manager?page=" + currentPage + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "&deleteId=" + user.getId() + "\">usuń</a>" +
+                                        "<a href=\"" + request.getContextPath() + "/admin/user-manager?page=" + currentPage + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "&deleteId=" + user.getId() + "\">usuń</a>" +
                                     "</td>" +
                                     "<td class=\"user-row-item user-login\">" + user.getUser_login() + "</td>" +
                                     "<td class=\"user-row-item user-pass\">" + user.getUser_pass() + "</td>" +
@@ -99,11 +99,11 @@
                             }
 
                             if(currentPage == 0){
-                                out.println("<a href=\"/admin/user-manager?page=0&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
+                                out.println("<a href=\"" + request.getContextPath() + "/admin/user-manager?page=0&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
                                         "<div class=\"link-no-1 first-page pagination-active\">1</div>" +
                                         "</a>");
                             } else {
-                                out.println("<a href=\"/admin/user-manager?page=0&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
+                                out.println("<a href=\"" + request.getContextPath() + "/admin/user-manager?page=0&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
                                         "<div class=\"link-no-1 first-page\">1</div>" +
                                         "</a>");
                             }
@@ -135,11 +135,11 @@
 
                             for(int j=currentPage-a; j<=currentPage+b; j++) {
                                 if(j==currentPage) {
-                                    out.println("<a href=\"/admin/user-manager?page=" + j + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
+                                    out.println("<a href=\"" + request.getContextPath() + "/admin/user-manager?page=" + j + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
                                             "<div class=\"link-no-" + (j + 1) + " pagination-active\">" + (j + 1) + "</div>" +
                                             "</a>");
                                 } else {
-                                    out.println("<a href=\"/admin/user-manager?page=" + j + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
+                                    out.println("<a href=\"" + request.getContextPath() + "/admin/user-manager?page=" + j + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
                                             "<div class=\"link-no-" + (j + 1) + "\">" + (j + 1) + "</div>" +
                                             "</a>");
                                 }
@@ -150,39 +150,39 @@
                             }
 
                             if(currentPage==pagesToPrint-1){
-                                out.println("<a href=\"/admin/user-manager?page=" + (pagesToPrint - 1) + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
+                                out.println("<a href=\"" + request.getContextPath() + "/admin/user-manager?page=" + (pagesToPrint - 1) + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
                                         "<div class=\"link-no-" + (pagesToPrint - 1) + " last-page pagination-active\">" + pagesToPrint + "</div>" +
                                         "</a>");
                             } else {
-                                out.println("<a href=\"/admin/user-manager?page=" + (pagesToPrint - 1) + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
+                                out.println("<a href=\"" + request.getContextPath() + "/admin/user-manager?page=" + (pagesToPrint - 1) + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
                                         "<div class=\"link-no-" + (pagesToPrint - 1) + " last-page\">" + pagesToPrint + "</div>" +
                                         "</a>");
                             }
 
                             if(currentPage!=pagesToPrint-1) {
-                                out.println("<a href=\"/admin/user-manager?page=" + (currentPage + 1) + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
+                                out.println("<a href=\"" + request.getContextPath() + "/admin/user-manager?page=" + (currentPage + 1) + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
                                         "<div class=\"link-no-" + (pagesToPrint + 1) + " next-page\">Następna</div>" +
                                         "</a></div>");
                             }
                         } else {
                             if(currentPage!=0) {
-                                out.println("<a href=\"/admin/user-manager?page=" + (currentPage - 1) + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
+                                out.println("<a href=\"" + request.getContextPath() + "/admin/user-manager?page=" + (currentPage - 1) + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
                                         "<div class=\"link-no-0 previous-page\">Poprzednia</div>" +
                                         "</a>");
                             }
 
                             for (int j=0; j<pagesToPrint; j++) {
                                 if(currentPage==j) {
-                                    out.println("<a href=\"/admin/user-manager?page=" + j + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
+                                    out.println("<a href=\"" + request.getContextPath() + "/admin/user-manager?page=" + j + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
                                             "<div class=\"link-no-" + (j+1) + " pagination-active\">" + (j+1) + "</div></a>");
                                 } else {
-                                    out.println("<a href=\"/admin/user-manager?page=" + j + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
+                                    out.println("<a href=\"" + request.getContextPath() + "/admin/user-manager?page=" + j + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
                                             "<div class=\"link-no-" + (j+1) + "\">" + (j+1) + "</div></a>");
                                 }
                             }
 
                             if(currentPage!=pagesToPrint-1) {
-                                out.println("<a href=\"/admin/user-manager?page=" + (currentPage + 1) + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
+                                out.println("<a href=\"" + request.getContextPath() + "/admin/user-manager?page=" + (currentPage + 1) + "&amountPerPage=" + amountPerPage + "&searchOption=" + searchOption + "&searchByUserName=" + searchByUserName + "\">" +
                                         "<div class=\"link-no-" + (pagesToPrint + 1) + " next-page\">Następna</div>" +
                                         "</a>");
                             }

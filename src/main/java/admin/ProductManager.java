@@ -14,30 +14,43 @@ import java.util.ArrayList;
 @WebServlet("/admin/product-manager")
 public class ProductManager extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        long page, amountPerPage;
-        int pagesToPrint;
+        long page, amountPerPage, amountOfProducts;
+        String deleteId, searchByProductName;
+        int searchOption;
 
-        if(request.getParameter("page") == null){
-            page = 0;
-        } else {
-            page = Long.valueOf(request.getParameter("page"));
+        if(request.getParameter("page") == null){ page = 0; } else { page = Long.parseLong(request.getParameter("page")); }
+        if(request.getParameter("amountPerPage") == null){ amountPerPage = 20; } else { amountPerPage = Long.parseLong(request.getParameter("amountPerPage")); }
+        if(request.getParameter("searchOption") != null) { searchOption = Integer.parseInt(request.getParameter("searchOption")); } else { searchOption = 2; }
+        if(request.getParameter("deleteId") != null){ deleteId = String.valueOf(request.getParameter("deleteId"));
+            if(ProductDAO.deleteSingleProduct(deleteId)){
+                request.setAttribute("msg", "Pomyślnie usunięto produkt");
+            } else {
+                request.setAttribute("msg", "Wystąpił problem w trakcie usuwania produktu");
+            }
         }
 
-        if(request.getParameter("amountPerPage") == null){
-            amountPerPage = 20;
+        // Zwraca inną listę użytkowników w zależności od tego czy zostało coś wpisane w szukajkę
+        if(request.getParameter("searchByProductName") != null){
+            searchByProductName = request.getParameter("searchByProductName");
+            ArrayList<Product> list = ProductDAO.getProductListOfPattern(page*amountPerPage, amountPerPage, searchByProductName, searchOption);
+
+            amountOfProducts = ProductDAO.amountOfProductsOfPattern(searchByProductName, searchOption);
+            request.setAttribute("searchOption", searchOption);
+            request.setAttribute("searchByProductName", searchByProductName);
+            request.setAttribute("list", list);
         } else {
-            amountPerPage = Long.valueOf(request.getParameter("amountPerPage"));
+            ArrayList<Product> list = ProductDAO.getProductsList(page*amountPerPage, amountPerPage);
+            amountOfProducts = ProductDAO.amountOfProducts();
+            request.setAttribute("list", list);
         }
 
-        long amountOfProducts = ProductDAO.amountOfProducts();
-        pagesToPrint = (int)Math.ceil(amountOfProducts / amountPerPage);
-        ArrayList<Product> list = ProductDAO.getProductsList(page*amountPerPage, amountPerPage);
+        // Ile stron wydrukować
+        int pagesToPrint = (int)Math.ceil((double)amountOfProducts / (double)amountPerPage);
 
         request.setAttribute("pagesToPrint", pagesToPrint);
         request.setAttribute("currentPage", page);
         request.setAttribute("amountPerPage", amountPerPage);
         request.setAttribute("amountOfUsers", amountOfProducts);
-        request.setAttribute("list", list);
 
         request.getRequestDispatcher("/WEB-INF/admin/product-manager.jsp").forward(request, response);
     }
