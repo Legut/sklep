@@ -13,7 +13,7 @@
                     <li class="backend-navigation-element"><i class="fas fa-users"></i> Użytkownicy</li>
                 </a>
                 <ul class="dropdown users-dropdown">
-                    <a href="${pageContext.request.contextPath}/admin/user-manager/add-user" class="backend-navigation-link" title="Dodaj użytkownika">
+                    <a href="${pageContext.request.contextPath}/admin/user-manager/add-user" class="backend-navigation-link" title="Dodaj nowego użytkownika">
                         <li><i class="fas fa-user-plus"></i> Dodaj nowego użytkownika</li>
                     </a>
                 </ul>
@@ -21,9 +21,19 @@
             <a href="${pageContext.request.contextPath}/admin/general-conf" class="backend-navigation-link" title="Ustawienia główne">
                 <li class="backend-navigation-element"><i class="fas fa-cogs"></i> Ustawienia główne</li>
             </a>
-            <a href="${pageContext.request.contextPath}/admin/product-manager" class="backend-navigation-link" title="Przejdź do menadżera produktów">
-                <li class="backend-navigation-element"><i class="fas fa-shopping-bag"></i> Produkty</li>
+            <a href="${pageContext.request.contextPath}/admin/media-manager" class="backend-navigation-link" title="Menadżer mediów">
+                <li class="backend-navigation-element"><i class="fas fa-photo-video"></i> Menadżer mediów</li>
             </a>
+            <div class="products-link">
+                <a href="${pageContext.request.contextPath}/admin/product-manager" class="backend-navigation-link" title="Przejdź do menadżera produktów">
+                    <li class="backend-navigation-element"><i class="fas fa-shopping-cart"></i> Produkty</li>
+                </a>
+                <ul class="dropdown product-dropdown">
+                    <a href="${pageContext.request.contextPath}/admin/product-manager/add-product" class="backend-navigation-link" title="Dodaj nowy produkt">
+                        <li><i class="fas fa-cart-plus"></i> Dodaj nowy produkt</li>
+                    </a>
+                </ul>
+            </div>
         </ul>
     </div>
 </div>

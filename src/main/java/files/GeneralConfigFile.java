@@ -4,6 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import util.ContextOperations;
 
 import javax.servlet.ServletContext;
 import javax.xml.parsers.DocumentBuilder;
@@ -20,15 +21,16 @@ import java.util.HashMap;
 public class GeneralConfigFile {
     private HashMap<String, String> map;
     public GeneralConfigFile (ServletContext context) {
-        this.map = readConfigFile(context);
+        String pathToConfig = ContextOperations.getPathToRoot(context.getRealPath("")) + "\\src\\main\\webapp\\WEB-INF\\admin\\config.xml";
+        this.map = readConfigFile(context, pathToConfig);
     }
     public HashMap<String, String> getMap() {
         return map;
     }
-    public HashMap<String, String> readConfigFile(ServletContext context){
+    public HashMap<String, String> readConfigFile(ServletContext context, String pathToConfig){
         HashMap<String, String> configuration = new HashMap<>();
         try {
-            File fXmlFile = new File(context.getResource("/WEB-INF/admin/config.xml").getFile());
+            File fXmlFile = new File(pathToConfig);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
@@ -50,7 +52,7 @@ public class GeneralConfigFile {
             return configuration;
         }
     }
-    public void updateConfigFile(ServletContext context, HashMap<String, String> configuration){
+    public void updateConfigFile(ServletContext context, HashMap<String, String> configuration, String pathToConfig){
         try {
             InputStream fXmlFile = context.getResourceAsStream("/WEB-INF/admin/config.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -72,7 +74,8 @@ public class GeneralConfigFile {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            File file = new File (context.getResource("/WEB-INF/admin/config.xml").getFile());
+            File file = new File (pathToConfig);
+            System.out.println(file.getPath());
             FileOutputStream outStream = new FileOutputStream(file);
             StreamResult result = new StreamResult(outStream);
             transformer.transform(source, result);

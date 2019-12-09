@@ -38,7 +38,7 @@ public class EditProduct extends HttpServlet {
         String category = request.getParameter("category");
         String quantity = request.getParameter("quantity");
         String quantity_sold = request.getParameter("quantity_sold");
-        String on_sale = request.getParameter("on_sale");
+        String sale_price = request.getParameter("sale_price");
         String date_added = request.getParameter("date_added");
         String price = request.getParameter("price");
         String description = request.getParameter("description");
@@ -50,13 +50,13 @@ public class EditProduct extends HttpServlet {
         } else if(category == null){ request.setAttribute("msg", "Nie podano kategorii produktu");
         } else if(quantity == null){ request.setAttribute("msg", "Nie podano ilości produktów na stanie");
         } else if(quantity_sold == null){ request.setAttribute("msg", "Nie podano ilości sprzedanych produktów");
-        } else if(on_sale == null){ request.setAttribute("msg", "Nie podano ilości sprzedanych produktów");
+        } else if(sale_price == null){ request.setAttribute("msg", "Nie podano ilości sprzedanych produktów");
         } else if(date_added == null){ request.setAttribute("msg", "Nie podano daty dodania produktu");
         } else if(price == null){ request.setAttribute("msg", "Nie podano ceny produktu");
         } else if(description == null){ request.setAttribute("msg", "Nie podano opisu produktu");
         } else if(gallery_id == null){ request.setAttribute("msg", "Nie podano ID galerii produktowej");
         } else {
-            boolean done = ProductDAO.editGivenProduct(product_id, product_name, category, quantity, quantity_sold, on_sale, date_added, price, description, gallery_id);
+            boolean done = ProductDAO.editGivenProduct(product_id, product_name, category, quantity, quantity_sold, sale_price, date_added, price, description, gallery_id);
             if(done){
                 request.setAttribute("msg", "Pomyślnie zedytowano użytkownika");
             } else {

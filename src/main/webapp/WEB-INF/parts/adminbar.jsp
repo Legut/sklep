@@ -6,11 +6,6 @@
 		</div>
 	</a>
 	<nav class="Navbar__Items Navbar__Items--left">
-		<a href="${pageContext.request.contextPath}/admin/user-manager" title="Przejdź do menadżera użytkowników">
-			<div class="Navbar__Link">
-				<i class="fas fa-users"></i> Użytkownicy
-			</div>
-		</a>
 		<div class="Navbar__Link">
 			<a href="${pageContext.request.contextPath}/admin/user-manager" class="backend-navigation-link" title="Przejdź do menadżera użytkowników">
 				<li class="backend-navigation-element"><i class="fas fa-users"></i> Użytkownicy</li>
@@ -28,6 +23,18 @@
 				<li class="backend-navigation-element"><i class="fas fa-cogs"></i> Ustawienia główne</li>
 			</div>
 		</a>
+		<div class="Navbar__Link">
+			<a href="${pageContext.request.contextPath}/admin/product-manager" class="backend-navigation-link" title="Przejdź do menadżera produktów">
+				<li class="backend-navigation-element"><i class="fas fa-shopping-cart"></i> Produkty</li>
+			</a>
+			<div class="dropdown-content">
+				<ul>
+					<a href="${pageContext.request.contextPath}/admin/product-manager/add-product" class="backend-navigation-link" title="Dodaj produkt">
+						<li><i class="fas fa-cart-plus"></i> Dodaj nowy produkt</li>
+					</a>
+				</ul>
+			</div>
+		</div>
 	</nav>
   	<nav class="Navbar__Items Navbar__Items--right">
 	    <div class="Navbar__Link display-user-name">

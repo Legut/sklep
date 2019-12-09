@@ -27,7 +27,7 @@ public class ShowProduct extends HttpServlet {
             long gallery_id;
             Product product = ProductDAO.getProduct(id);
             if (product != null) {
-                request.setAttribute("name", product.getName());
+                request.setAttribute("name", product.getProduct_name());
                 request.setAttribute("category", product.getCategory());
                 request.setAttribute("quantity", product.getQuantity());
                 request.setAttribute("price", product.getPrice());

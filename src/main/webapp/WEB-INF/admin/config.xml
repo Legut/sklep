@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<configuration>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><configuration>
     <singleConf id="1">
         <name>logo</name>
         <value>assets/images/monopolowy24h-logo.png</value>
@@ -202,7 +201,7 @@
     </singleConf>
     <singleConf id="33">
         <name>tester</name>
-        <value>#000000</value>
+        <value>#800080</value>
     </singleConf>
     <singleConf id="34">
         <name>tester2</name>

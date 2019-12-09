@@ -29,7 +29,7 @@ body {
 .sidebar-left .backend-navigation-list .dropdown li{
     padding: 10px 15px;
 }
-.sidebar-left .backend-navigation-list .users-link:hover .dropdown {
+.sidebar-left .backend-navigation-list .users-link:hover .dropdown, .sidebar-left .backend-navigation-list .products-link:hover .dropdown {
     transition: max-height 3s ease-out 0s;
     max-height: 999px;
 }
@@ -116,6 +116,53 @@ body {
     background-color: #d2e996;
 }
 
+/* kolorystyka menadżera mediów */
+.media-manager .backend-page-title, .media-manager .data .product-list-header-item, .media-manager .pages-list a:hover div,
+.media-manager .pages-list .pagination-active, .media-manager .submit-element input[type=submit], .product-manager .showHideButton {
+    background-color: #c0e06c;
+}
+.media-manager .pages-list a div {
+    border-color: #c0e06c;
+}
+.media-manager .submit-element input[type=submit]:hover {
+    background-color: #d2e996;
+}
+.media-manager .all-images-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    vertical-align: middle;
+}
+.media-manager .all-images-container div {
+    max-width: 200px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    z-index: 1;
+    transition: all 0.5s;
+    position: relative;
+}
+.media-manager .fixed-image-size  {
+    max-height: 200px;
+    text-align: center;
+    min-height: 100%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.media-manager .all-images-container div:hover {
+    transform: scale(1.2);
+    z-index: 2;
+}
+.media-manager .all-images-container .image-text {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    color: white;
+    background-color: rgba(0,0,0,0.7);
+    padding: 5px;
+}
+
 /* Wygląd tabeli z danymi */
 .filters {
     background-color: #f8f6ff;
@@ -193,11 +240,15 @@ body .data tbody .user-row:nth-child(even), body .data tbody .product-row:nth-ch
     border-radius: 4px;
     box-sizing: border-box;
 }
-.user-manager .input-element, .product-manager .input-element {
+.user-manager .input-element, .product-manager .input-element, .media-manager .input-element {
     display: inline-block;
 }
 
-.submit-element input[type=submit] {
+.media-manager .input-element input[type=submit] {
+    margin-right: 20px;
+}
+
+.submit-element input[type=submit], .product-manager .showHideButton {
     color: white;
     padding: 14px 20px;
     margin: 8px 0;

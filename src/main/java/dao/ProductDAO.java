@@ -10,18 +10,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ProductDAO {
-    public static void addProduct(String product_name, String category, int quantity, boolean on_sale, double price, String description, int gallery_id) {
+    public static void addProduct(String product_name, String category, int quantity, double sale_price, double price, String description, int gallery_id) {
         PreparedStatement ps = null;
         Connection con = null;
         try {
             con = DataConnect.getConnection();
             if (con != null) {
-                String sql = "INSERT INTO products(product_name, category, quantity, on_sale, price, description, gallery_id, date_added) VALUES(?,?,?,?,?,?,?,NOW())";
+                String sql = "INSERT INTO products(product_name, category, quantity, sale_price, price, description, gallery_id, date_added) VALUES(?,?,?,?,?,?,?,NOW())";
                 ps = con.prepareStatement(sql);
                 ps.setString(1, product_name);
                 ps.setString(2, category);
                 ps.setInt(3, quantity);
-                ps.setBoolean(4, on_sale);
+                ps.setDouble(4, sale_price);
                 ps.setDouble(5, price);
                 ps.setString(6, description);
                 ps.setInt(7, gallery_id);
@@ -41,7 +41,7 @@ public class ProductDAO {
         try {
             con = DataConnect.getConnection();
             if (con != null) {
-                String sql = "SELECT * FROM products WHERE product_id=?";
+                String sql = "SELECT * FROM products LEFT JOIN photo_gallery ON products.gallery_id WHERE product_id=?";
                 ps = con.prepareStatement(sql);
                 ps.setLong(1, id);
                 ResultSet rs = ps.executeQuery();
@@ -52,11 +52,15 @@ public class ProductDAO {
                             rs.getString("category"),
                             rs.getInt("quantity"),
                             rs.getInt("quantity_sold"),
-                            rs.getBoolean("on_sale"),
+                            rs.getDouble("sale_price"),
                             rs.getString("date_added"),
                             rs.getDouble("price"),
                             rs.getString("description"),
-                            rs.getInt("gallery_id"));
+                            rs.getInt("gallery_id"),
+                            rs.getString("photo_1"),
+                            rs.getString("photo_2"),
+                            rs.getString("photo_3"),
+                            rs.getString("photo_4"));
                 }
             }
         } catch (Exception ex) {
@@ -93,7 +97,7 @@ public class ProductDAO {
         ArrayList<Product> productsList = new ArrayList<>();
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("SELECT * FROM products ORDER BY category LIMIT ?, ?");
+            ps = con.prepareStatement("SELECT * FROM products LEFT JOIN photo_gallery ON products.gallery_id ORDER BY category LIMIT ?, ?");
             ps.setLong(1, startPosition);
             ps.setLong(2, amount);
             ResultSet rs = ps.executeQuery();
@@ -103,11 +107,15 @@ public class ProductDAO {
                         rs.getString("category"),
                         rs.getInt("quantity"),
                         rs.getInt("quantity_sold"),
-                        rs.getBoolean("on_sale"),
+                        rs.getDouble("sale_price"),
                         rs.getString("date_added"),
                         rs.getDouble("price"),
                         rs.getString("description"),
-                        rs.getInt("gallery_id"));
+                        rs.getInt("gallery_id"),
+                        rs.getString("photo_1"),
+                        rs.getString("photo_2"),
+                        rs.getString("photo_3"),
+                        rs.getString("photo_4"));
                 productsList.add(temp);
             }
         } catch (SQLException ex) {
@@ -179,7 +187,7 @@ public class ProductDAO {
         ArrayList<Product> productList = new ArrayList<>();
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("SELECT * FROM products WHERE product_name LIKE ? ORDER BY product_id LIMIT ?, ?");
+            ps = con.prepareStatement("SELECT * FROM products LEFT JOIN photo_gallery ON products.gallery_id WHERE product_name LIKE ? ORDER BY product_id LIMIT ?, ?");
             if(searchOption==1){
                 ps.setString(1, searchByProductName + "%");
             } else if(searchOption==3) {
@@ -196,11 +204,15 @@ public class ProductDAO {
                         rs.getString("category"),
                         rs.getLong("quantity"),
                         rs.getLong("quantity_sold"),
-                        rs.getBoolean("on_sale"),
+                        rs.getDouble("sale_price"),
                         rs.getString("date_added"),
                         rs.getDouble("price"),
                         rs.getString("description"),
-                        rs.getLong("gallery_id"));
+                        rs.getLong("gallery_id"),
+                        rs.getString("photo_1"),
+                        rs.getString("photo_2"),
+                        rs.getString("photo_3"),
+                        rs.getString("photo_4"));
                 productList.add(temp);
             }
         } catch (SQLException ex) {
@@ -250,7 +262,7 @@ public class ProductDAO {
         PreparedStatement ps = null;
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("SELECT * FROM products WHERE product_id = ?");
+            ps = con.prepareStatement("SELECT * FROM products LEFT JOIN photo_gallery ON products.gallery_id WHERE product_id = ?");
             ps.setString(1, productId);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -259,11 +271,15 @@ public class ProductDAO {
                         rs.getString("category"),
                         rs.getLong("quantity"),
                         rs.getLong("quantity_sold"),
-                        rs.getBoolean("on_sale"),
+                        rs.getDouble("sale_price"),
                         rs.getString("date_added"),
                         rs.getDouble("price"),
                         rs.getString("description"),
-                        rs.getLong("gallery_id"));
+                        rs.getLong("gallery_id"),
+                        rs.getString("photo_1"),
+                        rs.getString("photo_2"),
+                        rs.getString("photo_3"),
+                        rs.getString("photo_4"));
                 return singleProduct;
             }
         } catch (SQLException ex) {
@@ -281,7 +297,7 @@ public class ProductDAO {
         }
         return null;
     }
-    public static boolean editGivenProduct(String product_id, String product_name, String category, String quantity, String quantity_sold, String on_sale, String date_added, String price, String description, String gallery_id) {
+    public static boolean editGivenProduct(String product_id, String product_name, String category, String quantity, String quantity_sold, String sale_price, String date_added, String price, String description, String gallery_id) {
         if (product_id != null || product_name != null || category != null) {
             PreparedStatement ps = null;
             Connection con = null;
@@ -289,12 +305,12 @@ public class ProductDAO {
             try {
                 con = DataConnect.getConnection();
                 if (con != null) {
-                    ps = con.prepareStatement("UPDATE products SET product_name = ?, category = ?, quantity = ?, quantity_sold = ?, on_sale = ?, date_added = ?, price = ?, description = ?, gallery_id = ? WHERE product_id = ? ");
+                    ps = con.prepareStatement("UPDATE products SET product_name = ?, category = ?, quantity = ?, quantity_sold = ?, sale_price = ?, date_added = ?, price = ?, description = ?, gallery_id = ? WHERE product_id = ? ");
                     ps.setString(1, product_name);
                     ps.setString(2, category);
                     ps.setString(3, quantity);
                     ps.setString(4, quantity_sold);
-                    ps.setString(5, on_sale);
+                    ps.setString(5, sale_price);
                     ps.setString(6, date_added);
                     ps.setString(7, price);
                     ps.setString(8, description);
@@ -313,21 +329,20 @@ public class ProductDAO {
             return false;
         }
     }
-
-    public static boolean addProduct(String product_name, String category, String quantity, String quantity_sold, String on_sale, String price, String description, String gallery_id) {
+    public static boolean addProduct(String product_name, String category, String quantity, String quantity_sold, String sale_price, String price, String description, String gallery_id) {
         if (product_name != null || category != null || quantity != null) {
             PreparedStatement ps = null;
             Connection con = null;
             try {
                 con = DataConnect.getConnection();
                 if (con != null) {
-                    String sql = "INSERT INTO users(product_name, category, quantity, quantity_sold, on_sale, date_added, price, description, gallery_id) VALUES(?,?,?,?,?,NOW(),?,?,?)";
+                    String sql = "INSERT INTO users(product_name, category, quantity, quantity_sold, sale_price, date_added, price, description, gallery_id) VALUES(?,?,?,?,?,NOW(),?,?,?)";
                     ps = con.prepareStatement(sql);
                     ps.setString(1, product_name);
                     ps.setString(2, category);
                     ps.setString(3, quantity);
                     ps.setString(4, quantity_sold);
-                    ps.setString(5, on_sale);
+                    ps.setString(5, sale_price);
                     ps.setString(6, price);
                     ps.setString(7, description);
                     ps.setString(8, gallery_id);
