@@ -30,6 +30,9 @@
     		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/adminbar.css">
     	<%}
     }%>
+    <% if(request.getAttribute("isHomepage")=="is") { %>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/additionalHomepage.jsp">
+    <% } %>
 
     <!-- Hook before </head> -->
     <% out.print(configuration.get("hookBeforeHeadEnd")); %>

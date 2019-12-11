@@ -53,12 +53,11 @@
                             "<td class=\"product-list-header-item product-edit\">edytuj / usuń</td>" +
                             "<td class=\"product-list-header-item product-name\">Nazwa</td>" +
                             "<td class=\"product-list-header-item product-category\">Kategoria</td>" +
+                            "<td class=\"product-list-header-item product-price\">Cena</td>" +
+                            "<td class=\"product-list-header-item product-on-sale\">Cena w promocji</td>" +
                             "<td class=\"product-list-header-item product-quantity\">Dostępna ilość</td>" +
                             "<td class=\"product-list-header-item product-quantity-sold\">Sprzedana ilość</td>" +
-                            "<td class=\"product-list-header-item product-on-sale\">Wyprzedaż</td>" +
                             "<td class=\"product-list-header-item product-date-added\">Data dodania</td>" +
-                            "<td class=\"product-list-header-item product-price\">Cena</td>" +
-                            "<td class=\"product-list-header-item product-product-gallery-id\">ID Galerii</td>" +
                             "</tr>" +
                             "</thead>" +
                             "<tbody>");
@@ -71,12 +70,11 @@
                                     "</td>" +
                                     "<td class=\"product-row-item product-name\">" + product.getProduct_name() + "</td>" +
                                     "<td class=\"product-row-item product-category\">" + product.getCategory() + "</td>" +
+                                    "<td class=\"product-row-item product-price\">" + String.format("%.2f", product.getPrice()) + " zł</td>" +
+                                    "<td class=\"product-row-item product-on-sale\">" + String.format("%.2f", product.getSale_price()) + " zł</td>" +
                                     "<td class=\"product-row-item product-quantity\">" + product.getQuantity() + "</td>" +
                                     "<td class=\"product-row-item product-quantity-sold\">" + product.getQuantity_sold() + "</td>" +
-                                    "<td class=\"product-row-item product-on-sale\">" + product.getSale_price() + "</td>" +
                                     "<td class=\"product-row-item product-date-added\">" + product.getDate_added() + "</td>" +
-                                    "<td class=\"product-row-item product-price\">" + String.format( "%.2f", product.getPrice() ) + "</td>" +
-                                    "<td class=\"product-row-item product-gallery-id\">" + product.getGallery_id() + "</td>" +
                                     "</tr>");
                             i++;
                         }

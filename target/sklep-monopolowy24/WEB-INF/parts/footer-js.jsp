@@ -7,6 +7,9 @@
     <script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/owl.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/additional.jsp"></script>
+    <% if(request.getAttribute("isHomepage")=="is") { %>
+        <script src="${pageContext.request.contextPath}/assets/js/additionalHomepage.jsp"></script>
+    <% } %>
 
     <!-- Skrypty tylko na single product -->
     <script src="${pageContext.request.contextPath}/assets/js/isotope.js"></script>

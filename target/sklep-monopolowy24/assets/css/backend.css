@@ -116,9 +116,49 @@ body {
     background-color: #d2e996;
 }
 
+/* kolorystyka edytora strony głównej */
+.homepage-editor .backend-page-title, .homepage-editor .submit-element input[type=submit],
+.homepage-editor .activate-tab-bar, .homepage-editor .activate-tab-button {
+    background-color: #e46874;
+}
+.homepage-editor .activate-tab-button:hover, .homepage-editor .activate-tab-bar .active {
+    background-color: #fff;
+    color: #e46874;
+}
+.homepage-editor .submit-element input[type=submit]:hover {
+    background-color: #f39ca0;
+}
+
+.homepage-editor .input-element {
+    margin: 0px
+}
+.homepage-editor .input-section {
+    margin-bottom: 20px;
+}
+.homepage-editor .input-section-title {
+    margin: 0px;
+    color: #e46874;
+    border-bottom: 2px solid #f39ca0;
+    max-width: 300px;
+    padding: 5px 0px;
+    margin-bottom: 5px;
+}
+
+/* kolorystyka menadżera produktów */
+.product-manager .backend-page-title, .product-manager .data .product-list-header-item, .product-manager .pages-list a:hover div,
+.product-manager .pages-list .pagination-active, .product-manager .submit-element input[type=submit] {
+    background-color: #c0e06c;
+}
+.product-manager .pages-list a div {
+    border-color: #c0e06c;
+}
+.product-manager .submit-element input[type=submit]:hover {
+    background-color: #d2e996;
+}
+
 /* kolorystyka menadżera mediów */
 .media-manager .backend-page-title, .media-manager .data .product-list-header-item, .media-manager .pages-list a:hover div,
-.media-manager .pages-list .pagination-active, .media-manager .submit-element input[type=submit], .product-manager .showHideButton {
+.media-manager .pages-list .pagination-active, .media-manager .submit-element input[type=submit], .product-manager .showButton {
     background-color: #c0e06c;
 }
 .media-manager .pages-list a div {
@@ -161,6 +201,29 @@ body {
     color: white;
     background-color: rgba(0,0,0,0.7);
     padding: 5px;
+}
+
+#ImageChooseWindow {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    background-color: #ffffff;
+    display: none;
+}
+#ImageChooseWindow .hideButton {
+    background-color: #ff5a4d!important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0;
+}
+#ImageChooseWindow #MediaFrame {
+    width: 100%;
+    display: block;
+    height: 100%;
 }
 
 /* Wygląd tabeli z danymi */
@@ -248,7 +311,7 @@ body .data tbody .user-row:nth-child(even), body .data tbody .product-row:nth-ch
     margin-right: 20px;
 }
 
-.submit-element input[type=submit], .product-manager .showHideButton {
+.submit-element input[type=submit], .product-manager .showButton {
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -259,7 +322,7 @@ body .data tbody .user-row:nth-child(even), body .data tbody .product-row:nth-ch
 .user-manager .submit-element input[type=submit]{
     width: 100%;
 }
-.general-conf .submit-element input[type=submit]{
+.general-conf .submit-element input[type=submit], .homepage-editor .submit-element input[type=submit]{
     min-width: 300px;
 }
 

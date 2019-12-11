@@ -17,32 +17,38 @@ import java.sql.SQLException;
 @WebServlet("/admin/product-manager/edit-product")
 public class EditProduct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String productId = request.getParameter("productId");
-        String msg = "";
-        if(request.getAttribute("msg")!=null) {
-            msg += request.getAttribute("msg");
+        request.setCharacterEncoding("UTF-8");
+        String productId;
+        if(request.getParameter("productId")!=null) {
+            productId = request.getParameter("productId");
+        } else {
+            productId = (String) request.getAttribute("productId");
         }
-
         if(ProductDAO.checkIfProductExists(productId)){
             Product singleProduct = ProductDAO.getSingleProductData(productId);
             request.setAttribute("singleProduct", singleProduct);
         }
 
-        request.setAttribute("msg", msg);
         request.getRequestDispatcher("/WEB-INF/admin/edit-product.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String product_id = request.getParameter("product_id");
+        request.setCharacterEncoding("UTF-8");
+        String product_id = request.getParameter("productId");
+        request.setAttribute("productId", product_id);
         String product_name = request.getParameter("product_name");
         String category = request.getParameter("category");
         String quantity = request.getParameter("quantity");
         String quantity_sold = request.getParameter("quantity_sold");
+        String price = request.getParameter("price");
         String sale_price = request.getParameter("sale_price");
         String date_added = request.getParameter("date_added");
-        String price = request.getParameter("price");
         String description = request.getParameter("description");
-        String gallery_id = request.getParameter("gallery_id");
+        String photoLinkOne = request.getParameter("photoLinkOne");
+        String photoLinkTwo = request.getParameter("photoLinkTwo");
+        String photoLinkThree = request.getParameter("photoLinkThree");
+        String photoLinkFour = request.getParameter("photoLinkFour");
+        String featured = request.getParameter("featured");
 
         if(product_id == null){ request.setAttribute("msg", "Nie rozpoznano id edytowanego produktu. Spróbuj ponownie wyszukać produkt " +
                 "w menadżerze produktów i zedytuj jego dane jeszcze raz.");
@@ -54,13 +60,13 @@ public class EditProduct extends HttpServlet {
         } else if(date_added == null){ request.setAttribute("msg", "Nie podano daty dodania produktu");
         } else if(price == null){ request.setAttribute("msg", "Nie podano ceny produktu");
         } else if(description == null){ request.setAttribute("msg", "Nie podano opisu produktu");
-        } else if(gallery_id == null){ request.setAttribute("msg", "Nie podano ID galerii produktowej");
         } else {
-            boolean done = ProductDAO.editGivenProduct(product_id, product_name, category, quantity, quantity_sold, sale_price, date_added, price, description, gallery_id);
+            boolean done = ProductDAO.editGivenProduct(product_id, product_name, category, quantity, quantity_sold, sale_price, date_added, price,
+                    description, photoLinkOne, photoLinkTwo, photoLinkThree, photoLinkFour, featured);
             if(done){
-                request.setAttribute("msg", "Pomyślnie zedytowano użytkownika");
+                request.setAttribute("msg", "Pomyślnie zedytowano produkt");
             } else {
-                request.setAttribute("msg", "Wystąpił problem w trakcie dodawania zedytowanych danych uzytkownika do bazy, spróbuj ponownie, albo zweryfikuj logi serwera");
+                request.setAttribute("msg", "Wystąpił problem w trakcie dodawania zedytowanych danych produktu do bazy, spróbuj ponownie, albo zweryfikuj logi serwera");
             }
         }
 

@@ -24,7 +24,7 @@ public class ShowProduct extends HttpServlet {
         String parameter = request.getParameter("id");
         try {
             long id = Long.parseLong(parameter);
-            long gallery_id;
+            long gallery_id = 0;
             Product product = ProductDAO.getProduct(id);
             if (product != null) {
                 request.setAttribute("name", product.getProduct_name());
@@ -32,7 +32,6 @@ public class ShowProduct extends HttpServlet {
                 request.setAttribute("quantity", product.getQuantity());
                 request.setAttribute("price", product.getPrice());
                 request.setAttribute("description", product.getDescription());
-                gallery_id = product.getGallery_id();
                 Gallery gallery = GalleryDAO.getGallery(gallery_id);
                 if (gallery != null) {
                     if(gallery.getPhoto_1() != null){

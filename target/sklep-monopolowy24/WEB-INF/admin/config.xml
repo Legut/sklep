@@ -185,7 +185,7 @@
     </singleConf>
     <singleConf id="29">
         <name>hookBeforeHeadEnd</name>
-        <value>&lt;link rel="stylesheet" href="/nie/ma/takiego.css"&gt;</value>
+        <value>&lt;span style="display: none"&gt;Jakiś hook przed końcem head&lt;/span&gt;</value>
     </singleConf>
     <singleConf id="30">
         <name>hookAfterBody</name>

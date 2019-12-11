@@ -34,6 +34,9 @@
                     </a>
                 </ul>
             </div>
+            <a href="${pageContext.request.contextPath}/admin/homepage-editor" class="backend-navigation-link" title="Edytor strony głównej">
+                <li class="backend-navigation-element"><i class="fas fa-cogs"></i> Homepage Editor</li>
+            </a>
         </ul>
     </div>
 </div>

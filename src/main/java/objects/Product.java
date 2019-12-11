@@ -11,14 +11,14 @@ public class Product {
     private String date_added;
     private double price;
     private String description;
-    private long gallery_id;
     private String imageOne;
     private String imageTwo;
     private String imageThree;
     private String imageFour;
+    private boolean featured;
 
     public Product(long id, String product_name, String category, long quantity, long quantity_sold, double sale_price, String date_added, double price,
-                   String description, long gallery_id, String imageOne, String imageTwo, String imageThree, String imageFour) {
+                   String description, String imageOne, String imageTwo, String imageThree, String imageFour, boolean featured) {
         this.id = id;
         this.product_name = product_name;
         this.category = category;
@@ -28,11 +28,11 @@ public class Product {
         this.date_added = date_added;
         this.price = price;
         this.description = description;
-        this.gallery_id = gallery_id;
         this.imageOne = imageOne;
         this.imageTwo = imageTwo;
         this.imageThree = imageThree;
         this.imageFour = imageFour;
+        this.featured = featured;
     }
 
     public Product(){
@@ -45,11 +45,11 @@ public class Product {
         this.date_added = null;
         this.price = 0;
         this.description = null;
-        this.gallery_id = 0;
         this.imageOne = null;
         this.imageTwo = null;
         this.imageThree = null;
         this.imageFour = null;
+        this.featured = false;
     }
 
     public void setId(int id) { this.id = id; }
@@ -62,9 +62,11 @@ public class Product {
     public String getDate_added() { return date_added; }
     public double getPrice() { return price; }
     public String getDescription() { return description; }
-    public long getGallery_id() { return gallery_id; }
     public String getImageOne() { return imageOne; }
     public String getImageTwo() { return imageTwo; }
     public String getImageThree() { return imageThree; }
     public String getImageFour() { return imageFour; }
+    public boolean isFeatured() {
+        return featured;
+    }
 }

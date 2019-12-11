@@ -67,7 +67,7 @@
                         for(int i = amountPerPage * (currentPage-1); i < imageLinkList.size(); i++){
                 %>
                     <div class="image-container">
-                        <img class="image fixed-image-size" src="<% out.print(imageLinkList.get(i)); %>" onclick="parent.copyToInput(this);" />
+                        <img style="mix-blend-mode: luminosity;" class="image fixed-image-size" src="<% out.print(imageLinkList.get(i)); %>" onclick="unClickImages(); parent.copyToInput(this);" />
                         <span class="image-text" id="image-text-<% out.print(i); %>" onclick="getWidthAndHeight(<% out.print(i); %>, '<% out.print(imageLinkList.get(i)); %>')"><label>0x0 px</label></span>
                     </div>
                 <%

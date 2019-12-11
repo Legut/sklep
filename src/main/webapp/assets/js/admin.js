@@ -61,18 +61,36 @@ function copyToClipboard(image) {
     document.getElementById("InfoMsg").innerHTML = "Link do obrazka został skopiowany! Link: " + el.value;
     document.body.removeChild(el);
 }
-function mediaManagerDisplay(button) {
-    var frameStyle = document.getElementById("MediaFrame");
+function mediaManagerDisplay(inputId) {
+    var frameStyle = document.getElementById("ImageChooseWindow");
+    var input = document.getElementById(inputId);
     if(frameStyle.style.display==="none") {
-        button.value = "Schowaj";
-        button.style.backgroundColor = "#ff5a4d";
+        input.className = "activeRightNow";
         frameStyle.style.display = "block";
-    } else {
-        button.value = "Wybierz";
-        button.style.backgroundColor = "#c0e06c";
+    }
+}
+function mediaManagerHide() {
+    var frameStyle = document.getElementById("ImageChooseWindow");
+    if(frameStyle.style.display==="block") {
+        var input = document.getElementsByClassName("activeRightNow");
+        input[0].className = "";
         frameStyle.style.display = "none";
     }
 }
+
 function copyToInput(image){
-    document.getElementById("PhotoLinkOne").value = image.getAttribute('src');
+    var input = document.getElementsByClassName("activeRightNow");
+    input[0].value = image.getAttribute('src');
+    image.parentElement.style.background = "#c0e06c";
+    image.parentElement.getElementsByClassName("image-text")[0].style.color = "#c0e06c";
+}
+function unClickImages(){
+    var otherImages = document.getElementsByClassName("image-container");
+    for (var i = 0; i < otherImages.length; i++) {
+        otherImages[i].style.background = "none";
+    }
+    var otherTexts = document.getElementsByClassName("image-text");
+    for (var i = 0; i < otherImages.length; i++) {
+        otherTexts[i].style.color = "#ffffff";
+    }
 }
