@@ -17,7 +17,7 @@ public class ProductDAO {
         try {
             con = DataConnect.getConnection();
             if (con != null) {
-                String sql = "SELECT * FROM products WHERE product_id=?";
+                String sql = "SELECT * FROM products LEFT JOIN categories ON products.category_id = categories.category_id WHERE products.product_id=?";
                 ps = con.prepareStatement(sql);
                 ps.setLong(1, id);
                 ResultSet rs = ps.executeQuery();
@@ -25,7 +25,7 @@ public class ProductDAO {
                     product = new Product(
                             rs.getInt("product_id"),
                             rs.getString("product_name"),
-                            rs.getString("category"),
+                            rs.getString("category_name"),
                             rs.getInt("quantity"),
                             rs.getInt("quantity_sold"),
                             rs.getDouble("sale_price"),
@@ -107,14 +107,14 @@ public class ProductDAO {
         ArrayList<Product> productsList = new ArrayList<>();
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("SELECT * FROM products ORDER BY product_id LIMIT ?, ?");
+            ps = con.prepareStatement("SELECT * FROM products LEFT JOIN categories ON products.category_id = categories.category_id ORDER BY products.product_id LIMIT ?, ?");
             ps.setLong(1, startPosition);
             ps.setLong(2, amount);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Product temp = new Product(rs.getInt("product_id"),
                         rs.getString("product_name"),
-                        rs.getString("category"),
+                        rs.getString("category_name"),
                         rs.getInt("quantity"),
                         rs.getInt("quantity_sold"),
                         rs.getDouble("sale_price"),
@@ -149,7 +149,7 @@ public class ProductDAO {
             while (rs.next()) {
                 Product temp = new Product(rs.getInt("product_id"),
                         rs.getString("product_name"),
-                        rs.getString("category"),
+                        rs.getString("category_id"),
                         rs.getInt("quantity"),
                         rs.getInt("quantity_sold"),
                         rs.getDouble("sale_price"),
@@ -177,7 +177,7 @@ public class ProductDAO {
         ArrayList<Product> productList = new ArrayList<>();
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("SELECT * FROM products WHERE product_name LIKE ? ORDER BY product_id LIMIT ?, ?");
+            ps = con.prepareStatement("SELECT * FROM products LEFT JOIN categories ON products.category_id = categories.category_id WHERE products.product_name LIKE ? ORDER BY products.product_id LIMIT ?, ?");
             if(searchOption==1){
                 ps.setString(1, searchByProductName + "%");
             } else if(searchOption==3) {
@@ -191,7 +191,7 @@ public class ProductDAO {
             while (rs.next()) {
                 Product temp = new Product(rs.getLong("product_id"),
                         rs.getString("product_name"),
-                        rs.getString("category"),
+                        rs.getString("category_name"),
                         rs.getLong("quantity"),
                         rs.getLong("quantity_sold"),
                         rs.getDouble("sale_price"),
@@ -273,13 +273,13 @@ public class ProductDAO {
         PreparedStatement ps = null;
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("SELECT * FROM products WHERE product_id = ?");
+            ps = con.prepareStatement("SELECT * FROM products LEFT JOIN categories ON products.category_id = categories.category_id WHERE products.product_id = ?");
             ps.setString(1, productId);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Product singleProduct = new Product(rs.getLong("product_id"),
                         rs.getString("product_name"),
-                        rs.getString("category"),
+                        rs.getString("category_name"),
                         rs.getLong("quantity"),
                         rs.getLong("quantity_sold"),
                         rs.getDouble("sale_price"),
@@ -308,19 +308,19 @@ public class ProductDAO {
         }
         return null;
     }
-    public static boolean editGivenProduct(String product_id, String product_name, String category, String quantity, String quantity_sold, String sale_price,
+    public static boolean editGivenProduct(String product_id, String product_name, String category_id, String quantity, String quantity_sold, String sale_price,
                                            String date_added, String price, String description, String photoLinkOne, String photoLinkTwo, String photoLinkThree, String photoLinkFour, String featured) {
-        if (product_id != null || product_name != null || category != null) {
+        if (product_id != null || product_name != null || category_id != null) {
             PreparedStatement ps = null;
             Connection con = null;
 
             try {
                 con = DataConnect.getConnection();
                 if (con != null) {
-                    ps = con.prepareStatement("UPDATE products SET product_name = ?, category = ?, quantity = ?, quantity_sold = ?, sale_price = ?, date_added = ?, " +
+                    ps = con.prepareStatement("UPDATE products SET product_name = ?, category_id = ?, quantity = ?, quantity_sold = ?, sale_price = ?, date_added = ?, " +
                             "price = ?, description = ?, photo_link_one = ?, photo_link_two = ?, photo_link_three = ?, photo_link_four = ?, featured = ? WHERE product_id = ? ");
                     ps.setString(1, product_name);
-                    ps.setString(2, category);
+                    ps.setString(2, category_id);
                     ps.setString(3, quantity);
                     ps.setString(4, quantity_sold);
                     ps.setString(5, sale_price);
@@ -349,18 +349,18 @@ public class ProductDAO {
             return false;
         }
     }
-    public static boolean addProduct(String product_name, String category, String quantity, String quantity_sold, String sale_price, String date_added, String price,
+    public static boolean addProduct(String product_name, String category_id, String quantity, String quantity_sold, String sale_price, String date_added, String price,
                                      String description, String photoLinkOne, String photoLinkTwo, String photoLinkThree, String photoLinkFour, String featured) {
-        if (product_name != null || category != null || quantity != null) {
+        if (product_name != null || category_id != null || quantity != null) {
             PreparedStatement ps = null;
             Connection con = null;
             try {
                 con = DataConnect.getConnection();
                 if (con != null) {
-                    ps = con.prepareStatement("INSERT INTO products (product_name, category, quantity, quantity_sold, sale_price, date_added, price, " +
+                    ps = con.prepareStatement("INSERT INTO products (product_name, category_id, quantity, quantity_sold, sale_price, date_added, price, " +
                             "description, photo_link_one, photo_link_two, photo_link_three, photo_link_four, featured) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
                     ps.setString(1, product_name);
-                    ps.setString(2, category);
+                    ps.setString(2, category_id);
                     ps.setString(3, quantity);
                     ps.setString(4, quantity_sold);
                     ps.setString(5, sale_price);

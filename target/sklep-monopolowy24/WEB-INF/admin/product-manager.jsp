@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ page import="objects.Product" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="objects.Category" %>
+<%@ page import="dao.CategoryDAO" %>
 <!-- Nagłówek -->
 <jsp:include page="/WEB-INF/admin/parts/overall-header.jsp"/>
 <!-- Nawigacja sidebar -->
@@ -46,6 +48,7 @@
             <%
                 if(request.getAttribute("list") != null){
                     ArrayList<Product> list = (ArrayList<Product>) request.getAttribute("list");
+
                     long i = 0;
 
                     out.println("<thead>" +

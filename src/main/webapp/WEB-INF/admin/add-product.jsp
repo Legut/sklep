@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="objects.Category" %>
+<%@ page import="dao.CategoryDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!-- Nagłówek -->
 <jsp:include page="/WEB-INF/admin/parts/overall-header.jsp"/>
@@ -13,7 +16,14 @@
                 <div class="input-row" style="width: 100%">
                     <p class="input-element"><span>Nazwa produktu:</span> <br /> <span style="font-size: 8px">Nazwa produktu musi zawierać minimum 3 znaki.</span> <br />
                         <input type="text" name="product_name" pattern=".{3,}" title="Nazwa produktu musi zawierać minimum 3 znaki" required></p>
-                    <p class="input-element"><span>Kategoria: </span> <br /> <span style="font-size: 8px">---</span> <br /> <input type="text" name="category" title="---" required></p>
+                    <% ArrayList<Category> categoryList = CategoryDAO.getCategoriesList(); %>
+                    <p class="input-element"><span>Kategoria: </span> <br /> <span style="font-size: 8px">Kategorię można wybrać wyłącznie z listy utworzonych kategorii. Jeśli chcesz użyć kategorii, która nie znajduje się na liście przejdź do menadżera kategorii.</span> <br />
+                        <select name="category" title="Kategorię można wybrać wyłącznie z listy utworzonych kategorii. Jeśli chcesz użyć kategorii, która nie znajduje się na liście przejdź do menadżera kategorii." required>
+                            <% for (Category cat: categoryList) { %>
+                                <option value="<% out.print(cat.getId()); %>"><% out.print(cat.getCategoryName()); %></option>
+                            <% } %>
+                        </select>
+                    </p>
                 </div>
                 <div class="input-row">
                     <p class="input-element"><span>Ilość na stanie:</span> <br /> <input type="number" min="0" value="0" step="1" name="quantity" required></p>

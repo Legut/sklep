@@ -115,6 +115,28 @@ public class CategoryDAO {
         }
         return categoriesList;
     }
+    public static ArrayList<Category> getCategoriesList() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ArrayList<Category> categoriesList = new ArrayList<>();
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT * FROM categories ORDER BY category_id");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Category temp = new Category(rs.getLong("category_id"),
+                        rs.getString("category_name"),
+                        rs.getString("category_url"));
+                categoriesList.add(temp);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error while getting products data from db; ProductDAO.getCategoriesList() -->" + ex.getMessage());
+        } finally {
+            DataConnect.close(con);
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.getCategoriesList() -->" + ex.getMessage()); }
+        }
+        return categoriesList;
+    }
     public static ArrayList<Category> getCategoriesListOfPattern(long startPosition, long amountPerPage, String searchByCategoryName, int searchOption) {
         Connection con = null;
         PreparedStatement ps = null;
