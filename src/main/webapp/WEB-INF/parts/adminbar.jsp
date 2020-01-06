@@ -45,6 +45,11 @@
 				<li class="backend-navigation-element"><i class="fas fa-cogs"></i> Homepage Editor</li>
 			</div>
 		</a>
+		<a href="${pageContext.request.contextPath}/admin/category-manager" class="backend-navigation-link" title="Menadżer kategorii">
+			<div class="Navbar__Link">
+				<li class="backend-navigation-element"><i class="fas fa-tag"></i> Menadżer kategorii</li>
+			</div>
+		</a>
 	</nav>
   	<nav class="Navbar__Items Navbar__Items--right">
 	    <div class="Navbar__Link display-user-name">

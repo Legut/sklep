@@ -93,8 +93,8 @@
                 </div>
                 <div class="input-section">
                     <h3 class="input-section-title">Hooki</h3>
-                    <p class="input-element"><span class="textarea-description">Przed sekcją wyróżnione produkty: </span><br /><textarea name="hookBeforeHomepageFeatured" rows="10" cols="50"><% out.print(configuration.get("hookBeforeHomepageFeatured")); %></textarea></p>
-                    <p class="input-element"><span class="textarea-description">Po sekcji wyróżnione produkty: </span><br /><textarea name="hookAfterHomepageFeatured" rows="10" cols="50"><% out.print(configuration.get("hookAfterHomepageFeatured")); %></textarea></p>
+                    <p class="input-element" style="margin-bottom: 30px"><span class="textarea-description">Przed sekcją wyróżnione produkty: </span><br /><textarea class="hook-tinymce" id="hookBeforeHomepageFeatured" name="hookBeforeHomepageFeatured" rows="10" cols="50"><% out.print(configuration.get("hookBeforeHomepageFeatured")); %></textarea></p>
+                    <p class="input-element"><span class="textarea-description">Po sekcji wyróżnione produkty: </span><br /><textarea class="hook-tinymce" id="hookAfterHomepageFeatured" name="hookAfterHomepageFeatured" rows="10" cols="50"><% out.print(configuration.get("hookAfterHomepageFeatured")); %></textarea></p>
                 </div>
             </div>
             <p class="input-element submit-element"><input type="submit" value="Zastosuj" /></p>
@@ -102,4 +102,12 @@
     </div>
 </div>
 <!-- Stopka -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: '.hook-tinymce',
+        plugins: 'code',
+        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | code'
+    });
+</script>
 <jsp:include page="/WEB-INF/admin/parts/overall-footer.jsp"/>

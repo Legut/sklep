@@ -83,11 +83,12 @@ Regularnie wzbogacamy naszą ofertę o nowe pozycje. Zapraszamy do subskrybcji &
     </singleConf>
     <singleConf id="22">
         <name>hookBeforeHomepageFeatured</name>
-        <value>&lt;div style="display: none" class="tester"&gt;&#13;
-    &lt;h1&gt;tester1&lt;/h1&gt;&#13;
+        <value>&lt;p&gt;&amp;lt;div style="background-color: #000000"&amp;gt;&amp;lt;h1&amp;gt;cyce&amp;lt;/h1&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;&#13;
+&lt;div class="tester" style="display: none;"&gt;&#13;
+&lt;h1&gt;tester1&lt;/h1&gt;&#13;
 &lt;/div&gt;&#13;
-&lt;div style="display: none" class="tester2"&gt;&#13;
-    &lt;h1&gt;tester2&lt;/h1&gt;&#13;
+&lt;div class="tester2" style="display: none;"&gt;&#13;
+&lt;h1&gt;tester2&lt;/h1&gt;&#13;
 &lt;/div&gt;</value>
     </singleConf>
     <singleConf id="23">

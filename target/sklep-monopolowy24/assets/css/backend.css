@@ -1,4 +1,8 @@
+html {
+    height: 100%
+}
 body {
+    min-height: 100%;
     display: flex;
     font-family: 'Roboto', sans-serif;
     margin: 0px;
@@ -29,7 +33,8 @@ body {
 .sidebar-left .backend-navigation-list .dropdown li{
     padding: 10px 15px;
 }
-.sidebar-left .backend-navigation-list .users-link:hover .dropdown, .sidebar-left .backend-navigation-list .products-link:hover .dropdown {
+.sidebar-left .backend-navigation-list .users-link:hover .dropdown, .sidebar-left .backend-navigation-list .products-link:hover .dropdown,
+.sidebar-left .backend-navigation-list .category-link:hover .dropdown{
     transition: max-height 3s ease-out 0s;
     max-height: 999px;
 }
@@ -74,6 +79,18 @@ body {
 }
 .user-manager .submit-element input[type=submit]:hover {
     background-color: #96a0e9;
+}
+
+/* kolorystyka menadżera uzytkowników */
+.category-manager .backend-page-title, .category-manager .data .category-list-header-item, .category-manager .pages-list a:hover div,
+.category-manager .pages-list .pagination-active, .category-manager .submit-element input[type=submit] {
+    background-color: #e4d27a;
+}
+.category-manager .pages-list a div {
+    border-color: #e4d27a;
+}
+.category-manager .submit-element input[type=submit]:hover {
+    background-color: #ede0a4;
 }
 
 /* kolorystyka ustawień głównych */
@@ -236,13 +253,16 @@ body {
     width: 100%;
     border-spacing: 0px;
 }
-.data .user-list-header td:first-child, .data .product-list-header td:first-child {
+.data .user-list-header td:first-child, .data .product-list-header td:first-child,
+.data .category-list-header td:first-child {
     border-radius: 30px 0px 0px 0px;
 }
-.data .user-list-header td:last-child, .data .product-list-header td:last-child {
+.data .user-list-header td:last-child, .data .product-list-header td:last-child,
+.data .category-list-header td:last-child {
     border-radius: 0px 30px 0px 0px;
 }
-.data .user-list-header-item, .data .product-list-header-item {
+.data .user-list-header-item, .data .product-list-header-item,
+.data .category-list-header-item {
     font-weight: bold;
     font-size: 18px;
     color: #fff;
@@ -251,13 +271,15 @@ body {
     padding-bottom: 18px;
     text-align: center;
 }
-.data .user-row-item, .data .product-row-item {
+.data .user-row-item, .data .product-row-item,
+.data .category-row-item {
     font-size: 15px;
     color: gray;
     line-height: 1.4;
     padding: 10px 0px 10px 20px;
 }
-body .data tbody .user-row:nth-child(even), body .data tbody .product-row:nth-child(even) {
+body .data tbody .user-row:nth-child(even), body .data tbody .product-row:nth-child(even),
+body .data tbody .category-row:nth-child(even) {
     background-color: #f8f6ff!important;
 }
 .pages-list {
@@ -303,7 +325,8 @@ body .data tbody .user-row:nth-child(even), body .data tbody .product-row:nth-ch
     border-radius: 4px;
     box-sizing: border-box;
 }
-.user-manager .input-element, .product-manager .input-element, .media-manager .input-element {
+.user-manager .input-element, .product-manager .input-element,
+.media-manager .input-element, .category-manager .input-element {
     display: inline-block;
 }
 

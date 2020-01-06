@@ -40,10 +40,10 @@ public class ProductDAO {
                 }
             }
         } catch (Exception ex) {
-            System.out.println("Product request error when executing query; ProductDAO.requestProductName() -->" + ex.getMessage());
+            System.out.println("Product request error when executing query; ProductDAO.getProduct() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
-            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage()); }
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.getProduct() -->" + ex.getMessage()); }
         }
         return product;
     }
@@ -63,7 +63,7 @@ public class ProductDAO {
             System.out.println("Error while getting product data from db; ProductDAO.amountOfProducts() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
-            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage()); }
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.amountOfProducts() -->" + ex.getMessage()); }
         }
         return amount;
     }
@@ -132,7 +132,7 @@ public class ProductDAO {
             System.out.println("Error while getting products data from db; ProductDAO.getProductsList() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
-            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage()); }
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.getProductsList() -->" + ex.getMessage()); }
         }
         return productsList;
     }
@@ -164,10 +164,10 @@ public class ProductDAO {
                 productsList.add(temp);
             }
         } catch (SQLException ex) {
-            System.out.println("Error while getting products data from db; ProductDAO.getProductsList() -->" + ex.getMessage());
+            System.out.println("Error while getting products data from db; ProductDAO.getFeaturedProductsList() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
-            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.addProduct() -->" + ex.getMessage()); }
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.getFeaturedProductsList() -->" + ex.getMessage()); }
         }
         return productsList;
     }
@@ -206,10 +206,10 @@ public class ProductDAO {
                 productList.add(temp);
             }
         } catch (SQLException ex) {
-            System.out.println("Error while getting products data from db; ProductDAO.getProductsListOfPattern() -->" + ex.getMessage());
+            System.out.println("Error while getting products data from db; ProductDAO.getProductListOfPattern() -->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
-            if (ps != null) { try { ps.close(); } catch (SQLException ex) { System.out.println("Error while closing PreparedStatement; ProductDAO.getProductsListOfPattern() -->" + ex.getMessage()); } }
+            if (ps != null) { try { ps.close(); } catch (SQLException ex) { System.out.println("Error while closing PreparedStatement; ProductDAO.getProductListOfPattern() -->" + ex.getMessage()); } }
         }
         return productList;
     }

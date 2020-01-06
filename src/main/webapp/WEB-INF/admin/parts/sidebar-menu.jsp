@@ -37,6 +37,16 @@
             <a href="${pageContext.request.contextPath}/admin/homepage-editor" class="backend-navigation-link" title="Edytor strony głównej">
                 <li class="backend-navigation-element"><i class="fas fa-cogs"></i> Homepage Editor</li>
             </a>
+            <div class="category-link">
+                <a href="${pageContext.request.contextPath}/admin/category-manager" class="backend-navigation-link" title="Menadżer kategorii">
+                    <li class="backend-navigation-element"><i class="fa fa-tag" aria-hidden="true"></i> Menadżer kategorii</li>
+                </a>
+                <ul class="dropdown category-dropdown">
+                    <a href="${pageContext.request.contextPath}/admin/category-manager/add-category" class="backend-navigation-link" title="Dodaj nową kategorię">
+                        <li><i class="fas fa-tags"></i> Dodaj nową kategorię</li>
+                    </a>
+                </ul>
+            </div>
         </ul>
     </div>
 </div>
