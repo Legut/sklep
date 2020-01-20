@@ -1,13 +1,6 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="objects.Product" %>
-<%@ page import="dao.ProductDAO" %>
-<%@ page import="objects.Category" %>
-<%@ page import="dao.CategoryDAO" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="shoppingLogic.ShoppingCart" %>
 <%@ page import="objects.CartProduct" %>
 <%@ page import="util.ConstantValues" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<jsp:include page="/WEB-INF/parts/overall-header.jsp"/>
     <jsp:include page="/WEB-INF/parts/sloganbar.jsp"/>
