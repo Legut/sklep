@@ -52,7 +52,7 @@
                         ArrayList<Product> lista = ProductDAO.getFeaturedProductsList(10);
                         for (Product produkt: lista) {
                     %>
-                    <a href="${pageContext.request.contextPath}/single-product">
+                    <a href="${pageContext.request.contextPath}/sklep/produkt?id=<% out.print(produkt.getId()); %>">
                         <div class="featured-item">
                             <img src="<% out.print(produkt.getImageOne()); %>" alt="Produkt - <% out.print(produkt.getProduct_name()); %>">
                             <h4><% out.print(produkt.getProduct_name()); %></h4>
