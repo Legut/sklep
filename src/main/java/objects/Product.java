@@ -1,6 +1,8 @@
 package objects;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
     private long id;
     private String product_name;
@@ -68,5 +70,8 @@ public class Product {
     public String getImageFour() { return imageFour; }
     public boolean isFeatured() {
         return featured;
+    }
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
     }
 }
