@@ -1,8 +1,12 @@
 package dao;
 
+import objects.CartProduct;
 import objects.Product;
 import util.DataConnect;
 
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -136,6 +140,102 @@ public class ProductDAO {
         }
         return productsList;
     }
+    public static ArrayList<Product> getProductsListByCategory(long category_id, long startPosition, long amount) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ArrayList<Product> productsList = new ArrayList<>();
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT * FROM products LEFT JOIN categories ON products.category_id = categories.category_id WHERE products.category_id = ? ORDER BY products.product_id LIMIT ?, ?");
+            ps.setLong(1, category_id);
+            ps.setLong(2, startPosition);
+            ps.setLong(3, amount);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product temp = new Product(rs.getInt("product_id"),
+                        rs.getString("product_name"),
+                        rs.getString("category_name"),
+                        rs.getInt("quantity"),
+                        rs.getInt("quantity_sold"),
+                        rs.getDouble("sale_price"),
+                        rs.getString("date_added"),
+                        rs.getDouble("price"),
+                        rs.getString("description"),
+                        rs.getString("photo_link_one"),
+                        rs.getString("photo_link_two"),
+                        rs.getString("photo_link_three"),
+                        rs.getString("photo_link_four"),
+                        rs.getBoolean("featured"));
+                productsList.add(temp);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error while getting products data from db; ProductDAO.getProductsList() -->" + ex.getMessage());
+        } finally {
+            DataConnect.close(con);
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.getProductsList() -->" + ex.getMessage()); }
+        }
+        return productsList;
+    }
+    public static ArrayList<Product> getProductsListCustomStatement(String statement) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ArrayList<Product> productsList = new ArrayList<>();
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement(statement);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product temp = new Product(rs.getInt("product_id"),
+                        rs.getString("product_name"),
+                        rs.getString("category_name"),
+                        rs.getInt("quantity"),
+                        rs.getInt("quantity_sold"),
+                        rs.getDouble("sale_price"),
+                        rs.getString("date_added"),
+                        rs.getDouble("price"),
+                        rs.getString("description"),
+                        rs.getString("photo_link_one"),
+                        rs.getString("photo_link_two"),
+                        rs.getString("photo_link_three"),
+                        rs.getString("photo_link_four"),
+                        rs.getBoolean("featured"));
+                productsList.add(temp);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error while getting products data from db; ProductDAO.getProductsListCustomStatement() -->" + ex.getMessage());
+        } finally {
+            DataConnect.close(con);
+            try {
+                ps.close();
+            } catch (Exception ex) {
+                System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.getProductsListCustomStatement() -->" + ex.getMessage());
+            }
+        }
+        return productsList;
+    }
+    public static long getAmountOfProductsCustomStatement(String statement) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        long amountOfProducts = 0;
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement(statement);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                amountOfProducts = rs.getLong("amountOfPages");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error while getting products data from db; ProductDAO.getAmountOfProductsCustomStatement() -->" + ex.getMessage());
+        } finally {
+            DataConnect.close(con);
+            try {
+                ps.close();
+            } catch (Exception ex) {
+                System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.getAmountOfProductsCustomStatement() -->" + ex.getMessage());
+            }
+        }
+        return amountOfProducts;
+    }
     public static ArrayList<Product> getFeaturedProductsList(long amount) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -168,6 +268,43 @@ public class ProductDAO {
         } finally {
             DataConnect.close(con);
             try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.getFeaturedProductsList() -->" + ex.getMessage()); }
+        }
+        return productsList;
+    }
+    public static JsonArray getProductsList(String statement) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        JsonArray productsList = null;
+
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement(statement);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                builder.add(Json.createObjectBuilder()
+                        .add("product_id", rs.getString("product_id"))
+                        .add("product_name", rs.getString("product_name"))
+                        .add("category_id", rs.getString("category_id"))
+                        .add("quantity", rs.getString("quantity"))
+                        .add("quantity_sold", rs.getString("quantity_sold"))
+                        .add("sale_price", rs.getString("sale_price"))
+                        .add("date_added", rs.getString("date_added"))
+                        .add("price", rs.getString("price"))
+                        .add("description",  rs.getString("description"))
+                        .add("photo_link_one", rs.getString("photo_link_one"))
+                        .add("photo_link_two", rs.getString("photo_link_two"))
+                        .add("photo_link_three", rs.getString("photo_link_three"))
+                        .add("photo_link_four", rs.getString("photo_link_four"))
+                        .add("featured", rs.getString("featured")));
+            }
+            productsList = builder.build();
+        } catch (SQLException ex) {
+            System.out.println("Error while getting products data from db; ProductDAO.getProductsList() -->" + ex.getMessage());
+        } finally {
+            DataConnect.close(con);
+            try { ps.close(); } catch (Exception ex) { System.out.println("Product delete error when closing database connection or prepared statement; ProductDAO.getProductsList() -->" + ex.getMessage()); }
         }
         return productsList;
     }
@@ -269,6 +406,46 @@ public class ProductDAO {
         return false;
     }
     public static Product getSingleProductData(String productId) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT * FROM products LEFT JOIN categories ON products.category_id = categories.category_id WHERE products.product_id = ?");
+            ps.setString(1, productId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Product singleProduct = new Product(rs.getLong("product_id"),
+                        rs.getString("product_name"),
+                        rs.getString("category_name"),
+                        rs.getLong("quantity"),
+                        rs.getLong("quantity_sold"),
+                        rs.getDouble("sale_price"),
+                        rs.getString("date_added"),
+                        rs.getDouble("price"),
+                        rs.getString("description"),
+                        rs.getString("photo_link_one"),
+                        rs.getString("photo_link_two"),
+                        rs.getString("photo_link_three"),
+                        rs.getString("photo_link_four"),
+                        rs.getBoolean("featured"));
+                return singleProduct;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error while checking if product exists in db; ProductDAO.getSingleProductData() -->" + ex.getMessage());
+            return null;
+        } finally {
+            DataConnect.close(con);
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    System.out.println("Error while closing PreparedStatement; ProductDAO.getSingleProductData() -->" + ex.getMessage());
+                }
+            }
+        }
+        return null;
+    }
+    public static Product getSingleProductDataForCart(String productId, Integer quantity) {
         Connection con = null;
         PreparedStatement ps = null;
         try {

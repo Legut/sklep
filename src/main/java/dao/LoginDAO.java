@@ -94,6 +94,7 @@ public class LoginDAO {
                 userData.add(rs.getString("user_email"));
                 userData.add(rs.getString("user_activation_key"));
                 userData.add(rs.getString("user_role"));
+                userData.add(rs.getString("ID"));
                 return userData;
             }
         } catch (SQLException ex) {
