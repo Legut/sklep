@@ -2,7 +2,6 @@
 <%  HomePageConfigFile file = new HomePageConfigFile(request.getServletContext()); HashMap<String, String> configuration = file.getMap() ;%>
 /* Banner Style */
 .banner {
-    margin-top: 50px;
     background-image: url(<% out.print(configuration.get("sliderBackgroundUrl")); %>);
     background-size: cover;
     background-repeat: no-repeat;

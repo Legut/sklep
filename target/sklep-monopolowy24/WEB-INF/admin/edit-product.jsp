@@ -1,4 +1,7 @@
 <%@ page import="objects.Product" %>
+<%@ page import="objects.Category" %>
+<%@ page import="dao.CategoryDAO" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!-- Nagłówek -->
 <jsp:include page="/WEB-INF/admin/parts/overall-header.jsp"/>
@@ -16,7 +19,17 @@
                     <p class="input-element"><span>ID:</span> <br /> <input style="max-width: 70px" type="text" name="productId" value="<% out.print(singleProduct.getId()); %>" title="Id nie może zostać zmienione" readonly></p>
                     <p class="input-element"><span>Nazwa produktu:</span> <br /> <span style="font-size: 8px">Nazwa produktu musi zawierać minimum 3 znaki.</span> <br />
                         <input type="text" name="product_name" pattern=".{3,}" value="<% out.print(singleProduct.getProduct_name()); %>" title="Nazwa produktu musi zawierać minimum 3 znaki" required></p>
-                    <p class="input-element"><span>Kategoria: </span> <br /> <span style="font-size: 8px">---</span> <br /> <input type="text" name="category" value="<% out.print(singleProduct.getCategory()); %>" title="---" required></p>
+                    <% ArrayList<Category> categoryList = CategoryDAO.getCategoriesList(); %>
+                    <p class="input-element"><span>Kategoria: </span> <br /> <span style="font-size: 8px">Kategorię można wybrać wyłącznie z listy utworzonych kategorii. Jeśli chcesz użyć kategorii, która nie znajduje się na liście przejdź do menadżera kategorii.</span> <br />
+                        <select name="category" title="Kategorię można wybrać wyłącznie z listy utworzonych kategorii. Jeśli chcesz użyć kategorii, która nie znajduje się na liście przejdź do menadżera kategorii." required>
+                            <% for (Category cat: categoryList) { %>
+                            <option value="<% out.print(cat.getId()); %>" <%
+                                if(cat.getCategoryName().equals(singleProduct.getCategory()))
+                                    out.print("selected");
+                            %>><% out.print(cat.getCategoryName()); %></option>
+                            <% } %>
+                        </select>
+                    </p>
                 </div>
                 <div class="input-row">
                     <p class="input-element"><span>Ilość na stanie:</span> <br /> <input type="number" min="0" value="<% out.print(singleProduct.getQuantity()); %>" step="1" name="quantity" required></p>

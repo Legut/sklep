@@ -81,6 +81,7 @@
                         <option value="on" <% if(configuration.get("featuredSectionDisplay").equals("on")) out.print("selected"); %>>Pokaż</option>
                         <option value="off" <% if(configuration.get("featuredSectionDisplay").equals("off")) out.print("selected"); %>>Ukryj</option>
                     </select></p>
+                    <p class="input-element">Nagłówek sekcji wyróżnione: <input type="text" name="featuredHeader" value="<% out.print(configuration.get("featuredHeader")); %>" /></p>
                     <p class="input-element">Ile produktów na raz: <input type="number" min="3" max="5" name="featuredProductsGrid" value="<% out.print(configuration.get("featuredProductsGrid")); %>" /></p>
                     <p class="input-element">Ile produktów w sumie: <input type="number" min="3" max="12" name="featuredProductsAmount" value="<% out.print(configuration.get("featuredProductsAmount")); %>" /></p>
                 </div>

@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="logo">
-              <a class="navbar-brand" href="${pageContext.request.contextPath}/"><img src="<% out.print(configuration.get("logo")); %>" alt="<% out.print(configuration.get("logoAlt")); %>" title="<% out.print(configuration.get("logoTitle")); %>"></a>
+              <a class="navbar-brand" href="${pageContext.request.contextPath}/"><img src="/<% out.print(configuration.get("logo")); %>" alt="<% out.print(configuration.get("logoAlt")); %>" title="<% out.print(configuration.get("logoTitle")); %>"></a>
             </div>
           </div>
           <div class="col-md-12">

@@ -16,6 +16,9 @@
             <p><span>Hasło:</span> <br /> <input type="password" name="pwd"></p>
             <p><input type="submit" value="Zaloguj"></p>
         </form>
+        <% if(request.getAttribute("msg")!=null) {
+            out.print("<p>" + request.getAttribute("msg") + "</p>");
+        } %>
     </div>
 </div>
 </body>
