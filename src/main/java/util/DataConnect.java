@@ -19,9 +19,9 @@ import java.util.Base64;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class DataConnect {
-    private final static String DBURL = "amRiYzpteXNxbDovL2JjZC5ob21lLnBsLzAxMTU5MjU4X3NrbGVwP2F1dG9SZWNvbm5lY3Q9dHJ1ZSZ1c2VVbmljb2RlPXRydWUmdXNlSkRCQ0NvbXBsaWFudFRpbWV6b25lU2hpZnQ9dHJ1ZSZ1c2VMZWdhY3lEYXRldGltZUNvZGU9ZmFsc2Umc2VydmVyVGltZXpvbmU9VVRD";
-    private final static String DBUSER = "MDExNTkyNThfc2tsZXA=";
-    private final static String DBPASS = "YmF6YTEyMzsxMjM=";
+    private final static String DBURL = "";
+    private final static String DBUSER = "";
+    private final static String DBPASS = "";
     private final static String DBDRIVER = "Y29tLm15c3FsLmNqLmpkYmMuRHJpdmVy";
 
     private static ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(5);
